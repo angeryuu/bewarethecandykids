@@ -30,9 +30,9 @@
   
   >2.4. Movimiento y físicas
   
->>* Interacción entre elementos
+* Interacción entre elementos
     
->>* Controles
+* Controles
 
 **3. Interfaz**
 
