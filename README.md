@@ -12,11 +12,14 @@ En Beware the Candy Kids el jugador se enfrenta a una horda de niños hambriento
 
    >1.2. Características principales
    
-*Jugabilidad sencilla: Una mecánica simple que sea divertida tanto en ordenador como en móvil, al ser un juego de navegador accesible en cualquier plataforma.
-*Ambientación temática de Halloween. Tanto en el apartado visual como auditivo.
-*Curva de dificultad que mantenga el flow del juego. Que no resulte frustrante ni aburrida.
+* Jugabilidad sencilla: Una mecánica simple que sea divertida tanto en ordenador como en móvil, al ser un juego de navegador accesible en cualquier plataforma.
 
-   >1.3. Género
+* Ambientación temática de Halloween. Tanto en el apartado visual como auditivo.
+
+* Curva de dificultad que mantenga el flow del juego. Que no resulte frustrante ni aburrida.
+
+
+>1.3. Género
    
 Beware the Candy Kids se acerca al género de shoot ‘em up o tower defense.
 
@@ -41,7 +44,9 @@ La meta durante este desarrollo es realizar un juego pequeño y divertido, que s
    >2.1. Jugabilidad
    
 El juego se divide en oleadas. En todas ellas, el personaje del jugador, un gato en una calabaza, se encuentra en el centro de la pantalla y van entrando a la pantalla niños hambrientos a los que hay que lanzar caramelos, que será la única acción de la que dispondrá el jugador.
+
  Todos los niños avanzan acercándose al centro de la pantalla, si uno llega se acaba la partida. Pero según el disfraz que tengan pueden tener diferentes comportamientos al recibir el caramelo. Principalmente retirarse o exigir un nuevo caramelo después de realizar una acción como desplazarse.
+ 
  La progresión de dificultad va muy determinada por la estructura en oleadas del juego. De modo que cada oleada comenzará con una dificultad reducida y se irá incrementando hasta el final de la misma. Siendo cada oleada a su vez más difícil que la anterior. La dificultad viene determinada por el tipo de niños que aparecen, pero sobre todo por la cantidad.De esta forma buscamos que el jugador tenga momentos de calma, al comienzo de cada oleada, y momentos de tensión, al final.
   
   >2.2. Flujo de juego
@@ -51,15 +56,22 @@ Al iniciar el juego aparecerá un menú principal donde existirán las opciones 
    
    >2.3. Personajes
   
-*Protagonista: Será un gato dentro de una calabaza. Su única habilidad y objetivo será lanzar caramelos a los niños.
-*Niños:
-  *Vampiro (básico): Al recibir un caramelo desaparecerá de la pantalla.
-  *Monstruo de Frankenstein: Necesitará 3 caramelos para irse.
-  *Niño-lobo: Al recibir un caramelo se desplazará y exigirá otro caramelo.
-  *Brujo: Similar al anterior, pero en vez de desplazarse se teletransportará a otro lugar de la pantalla.
-  *Demonio: Al recibir un caramelo, se dividirá en dos enemigos. Hará esto dos veces y luego se retirará.
+* Protagonista: Será un gato dentro de una calabaza. Su única habilidad y objetivo será lanzar caramelos a los niños.
+
+* Niños:
+
+  * Vampiro (básico): Al recibir un caramelo desaparecerá de la pantalla.
   
-  >2.4. Movimiento 
+  * Monstruo de Frankenstein: Necesitará 3 caramelos para irse.
+  
+  * Niño-lobo: Al recibir un caramelo se desplazará y exigirá otro caramelo.
+  
+  * Brujo: Similar al anterior, pero en vez de desplazarse se teletransportará a otro lugar de la pantalla.
+  
+  * Demonio: Al recibir un caramelo, se dividirá en dos enemigos. Hará esto dos veces y luego se retirará.
+  
+  
+>2.4. Movimiento 
   
 El jugador no podrá moverse, estará anclado al centro de la pantalla en todo momento.
 
