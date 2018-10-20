@@ -84,21 +84,35 @@ El único control será hacer click o tap sobre los niños para lanzarles carame
 
 **3. Interfaz**
 
+A continuación se muestra el diseño de interfaz con las diferentes pantallas que forman el videojuego. Se muestra tanto las diferentes pantallas así como su conexión entre ellas a través de un diagrama de flujo. Posteriormente, se presentan los esquemas bocetados de cada una de ellas. Estos esquemas solo muestran una distribución de elementos a priori. Es el diseñador y artista el que debe darle estilo, imagenes y forma según los elementos con la que la componga. 
+
   >3.1. Diagrama de flujo
+  
+  En el siguiente diagrama se muestran las diversas pantallas y cómo se conectan entre sí:
+  ![DiagramaDeFlujo](img/diagramadeflujo.jpg)
   
   >3.2. Menú principal
   
-  >3.3. Créditos
+  ![MenuPrincipal](img/main.png)
+
+  >3.3. Configuración de nivel
   
-  >3.4. Selección de perfil
+  Esta pantalla de momento solo muestra una configuración básica (nombre y dificultad). En un futuro podría mostrar más información que se considere oportuna durante el desarrollo.
+   ![ConfiguracionNivel](img/settings.png)
   
-  >3.5. Selección de nivel
+  >3.4. Pantalla de Juego
   
-  >3.6. Selección de habilidades
+  Se muestra un boceto de lo que sería la pantalla de juego. Los niños son representados por el icono de persona. El gato sobre la calabaza se sitúa al centro.
+  ![PantallaDeJuego](img/game.png)
+
+  >3.5. Fin del juego
   
-  >3.7. Nivel
+  ![FinDeJuego](img/score.png)
+
+  >3.6. Créditos
   
-  >3.8. Fin de nivel
+  ![Creditos](img/credits.png)
+
   
 **4. Arte**
 
