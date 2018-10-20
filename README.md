@@ -142,16 +142,15 @@ Beware the Candy Kids es un videojuego que desea transmitir al jugador una sensa
    * Vista cenital de lo que parece ser la plaza de una ciudad. Es de noche pero las antorchas mantienen iluminado el camino. Se pueden apreciar variedad de hogares en el fondo.
 
 >4.2. Audio
-* **Música**: 
 
+* **Música**: 
 El videojuego tendrá una banda sonora original con temas de música electrónica retrowave (estilo ochentero) con una atmósfera “spooky”. Tendrán influencias de películas como “La naranja mecánica”, “Maniac” o series como “Stranger Things“:
-  * Tema de menú principal: con un tono tenso pero ritmo lento, actuando como un preludio de la acción principal.
-  * Tema ingame: algo más rápido, con un ritmo muy marcado que no varía a lo largo del juego, como si no le importase que el jugador lo tenga cada vez más difícil.
+   * Tema de menú principal: con un tono tenso pero ritmo lento, actuando como un preludio de la acción principal.
+   * Tema ingame: algo más rápido, con un ritmo muy marcado que no varía a lo largo del juego, como si no le importase que el    	jugador lo tenga cada vez más difícil.
 
 * **Efectos**: 
-	* Tirar caramelo
-	* Masticar caramelo
-	* Grito de muerte de la calabaza
-	* Risas de niños
-
+   * Tirar caramelo
+   * Masticar caramelo
+   * Grito de muerte de la calabaza
+   * Risas de niños
 
