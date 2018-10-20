@@ -2,9 +2,9 @@
 
 ## ÍNDICE
 
-**0. Cambios**
+### 0. Cambios ###
 
-**1. Introducción** 
+### 1. Introducción ###
 
    >1.1. Concepto de videojuego
    
@@ -39,7 +39,7 @@ Beware the Candy Kids tendrá un estilo amigable, evocando un ambiente de Hallow
   
 La meta durante este desarrollo es realizar un juego pequeño y divertido, que se pueda jugar repetidas veces sin que resulte repetitivo.
 
-**2. Mecánicas de juego**
+### 2. Mecánicas de juego ###
 
    >2.1. Jugabilidad
    
@@ -82,7 +82,7 @@ Los niños simplemente caminarán hacia el centro, excepto los que tengan disfra
 El único control será hacer click o tap sobre los niños para lanzarles caramelos.
 
 
-**3. Interfaz**
+### 3. Interfaz ###
 
 A continuación se muestra el diseño de interfaz con las diferentes pantallas que forman el videojuego. Se muestra tanto las diferentes pantallas así como su conexión entre ellas a través de un diagrama de flujo. Posteriormente, se presentan los esquemas bocetados de cada una de ellas. Estos esquemas solo muestran una distribución de elementos a priori. Es el diseñador y artista el que debe darle estilo, imagenes y forma según los elementos con la que la componga. 
 
@@ -114,7 +114,7 @@ A continuación se muestra el diseño de interfaz con las diferentes pantallas q
   ![Creditos](img/credits.png)
 
   
-**4. Arte**
+### 4. Arte ###
 
 Beware the Candy Kids es un videojuego que desea transmitir al jugador una sensación de ambiente festivo y feliz pero espeluznante y grotesco al mismo tiempo. Bajo una capa de colores pastel y personajes amigables se esconde una temática oscura con la que no se puede olvidar que los niños de este videojuego son tus enemigos y harán lo que sea para conseguir caramelos, lo que sea.
 
