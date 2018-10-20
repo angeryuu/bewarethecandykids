@@ -116,7 +116,30 @@ A continuación se muestra el diseño de interfaz con las diferentes pantallas q
   
 **4. Arte**
 
+Beware the Candy Kids es un videojuego que desea transmitir al jugador una sensación de ambiente festivo y feliz pero espeluznante y grotesco al mismo tiempo. Bajo una capa de colores pastel y personajes amigables se esconde una temática oscura con la que no se puede olvidar que los niños de este videojuego son tus enemigos y harán lo que sea para conseguir caramelos, lo que sea.
+
   >4.1. Arte 2D
-  
+  Las imágenes estarán en formatos .jpeg ya que es el más indicado para trabajar en web. Asimismo cada una deberá pesar 100KB como máximo. 
+
+* **Interfaz**: 
+   * Logo: Habrá dos logos. Uno más minimalista y con un elemento representativo del juego (calabaza o caramelo) y otro con las letras del título. Colores otoñales (ocres)
+   * GUI: Las pantallas vistas anteriormente realizadas con la paleta del videojuego.
+   * Puntero: Un puntero normal con la paleta de colores correspondiente.
+
+
+* **Personaje principal**:
+   * El gato y la calabaza: Un gato muy adorable encerrado en una calabaza llena de caramelos y de la que no puede escapar. La calabaza cambia de expresión constantemente.
+
+* **Niños**: ¿Están disfrazados o son niños de verdad?
+   * Vampiro: Sencillos y los más básicos.
+   * Monstruo de Frankestein: La versión más fortachona de los anteriores a nivel de mecánicas
+   * Niño-lobo: Un nivel más por delante que los nombrados ya.
+   * Brujo: Serían los más poderosos de no ser por los siguientes.
+   * Demonio: Todos los respetan y parecen ser la máxima autoridad de esta locura.
+	
+* **Escenario**
+
+   * Vista cenital de lo que parece ser la plaza de una ciudad. Es de noche pero las antorchas mantienen iluminado el camino. Se pueden apreciar variedad de hogares en el fondo.
+
   >4.2. Audio
 
