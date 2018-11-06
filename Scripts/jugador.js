@@ -11,8 +11,6 @@ function Jugador(canvas){
     this.y = canvas.height/2-209/2;
 
     this.update = function (progress) {
-        this.x += this.dir.x * progress;
-        this.y += this.dir.y * progress;
+
     }
-    
 }

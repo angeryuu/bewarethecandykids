@@ -15,5 +15,8 @@ function Caramelo(canvas, _dir, _x, _y){
         this.x += this.dir.x * progress;
         this.y += this.dir.y * progress;
     }
-    
+
+    this.destroy = function(){
+        delete this;
+    }
 }
