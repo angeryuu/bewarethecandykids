@@ -15,9 +15,9 @@ var canvas,
         ctx = canvas.getContext('2d');
 
         pj = new Jugador(canvas);
+        kidSpawner = new spawner(canvas);
 
         canvas.addEventListener('click', function(event) {
-
             var x = event.pageX - canvasLeft,
                 y = event.pageY - canvasTop;
             var dir = [0,0];
@@ -36,6 +36,8 @@ var canvas,
         caramelos.forEach( function(valor, i, array){
             caramelos[i].update(progress);
         });
+
+        kidSpawner.update(progress);
     }
       
     function draw() {
@@ -46,6 +48,8 @@ var canvas,
         caramelos.forEach( function(valor, i, array){
             caramelos[i].draw();
         });
+
+        kidSpawner.draw();
     }
       
     function loop(timestamp) {
