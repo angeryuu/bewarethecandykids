@@ -5,7 +5,7 @@ function kid(spawner, canvas, _x, _y){
     this.sprite.src = "Sprites/kiddo.png";
     this.x = _x;
     this.y = _y;
-    this.speed = 0.1;
+    this.speed = 0.2;
     var margin = 10;
 
     this.dir = [0,0];
@@ -21,7 +21,7 @@ function kid(spawner, canvas, _x, _y){
 
         // Si llega al centro se acaba la partida
         if(Math.abs(this.x-canvas.width/2)<30 && Math.abs(this.y-canvas.height/2)<30) {
-            spawner.destroy(this);
+            this.destroy();
         }
     }
 
@@ -36,9 +36,13 @@ function kid(spawner, canvas, _x, _y){
         if(x>this.x-margin && x<this.x+50+margin && y>this.y-margin && y<this.y+80+margin) {
             pos.x = this.x;
             pos.y = this.y;
-            //spawner.destroy(this);
+            this.destroy();
             return pos;
         }
         return pos;
+    }
+
+    this.destroy = function() {
+        spawner.destroy(this);
     }
 }

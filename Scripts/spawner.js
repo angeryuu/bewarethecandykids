@@ -6,7 +6,7 @@ function spawner(canvas){
     var kids = [];
 
     this.update = function (progress) {
-        if(kids.length<20) this.createKid();
+        if(kids.length<15) this.createKid();
         kids.forEach( function(valor, i, array){
             kids[i].update(progress);
         });
@@ -37,14 +37,11 @@ function spawner(canvas){
     }
 
     this.click = function (x,y) {
-        var pos = [];
-        pos.x = 0;
-        pos.y = 0;
+        var returnkid;
         kids.forEach( function(valor, i, array){
-            var auxPos = [];
-            auxPos = kids[i].click(x,y);
-            if ((auxPos.x != 0 || auxPos.y != 0)) pos = auxPos;
+            var auxkid = kids[i].click(x,y);
+            if ((auxkid.x != 0 || auxkid.y != 0)) returnkid = auxkid;
         });
-        return pos;
+        return returnkid;
     }
 }
