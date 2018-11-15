@@ -20,14 +20,14 @@ var canvas,
         canvas.addEventListener('click', function(event) {
             var x = event.pageX - canvasLeft,
                 y = event.pageY - canvasTop;
+            var pos = kidSpawner.click(x,y);
             var dir = [0,0];
-            dir.x = x-(pj.x + pj.sprite.width/2);
-            dir.y = y-(pj.y + pj.sprite.height/2);
+            dir.x = pos.x-(pj.x + pj.sprite.width/2);
+            dir.y = pos.y-(pj.y + pj.sprite.height/2);
             var mod = Math.sqrt((dir.x*dir.x)+(dir.y*dir.y));
             dir.x = dir.x/mod;
             dir.y = dir.y/mod;
-            //console.log(dir.x + " " + dir.y);
-            caramelos.push(new Caramelo(canvas, dir, pj.x, pj.y));
+            caramelos.push(new Caramelo(canvas, dir, pj.x + pj.sprite.width/2, pj.y + pj.sprite.height/2));
         }, false);
     }
 

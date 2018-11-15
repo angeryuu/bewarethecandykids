@@ -5,7 +5,8 @@ function kid(spawner, canvas, _x, _y){
     this.sprite.src = "Sprites/kiddo.png";
     this.x = _x;
     this.y = _y;
-    this.speed = 0.2;
+    this.speed = 0.1;
+    var margin = 10;
 
     this.dir = [0,0];
     this.dir.x = (canvas.width/2) - this.x;
@@ -28,10 +29,16 @@ function kid(spawner, canvas, _x, _y){
         this.ctx.drawImage(this.sprite, this.x, this.y);
     }
 
-    /*canvas.addEventListener('click', function(event) {
-        var x = event.pageX - canvasLeft,
-            y = event.pageY - canvasTop;
-            
-        console.log("Hola");
-    }, false);*/
+    this.click = function (x,y) {
+        var pos = [];
+        pos.x = 0;
+        pos.y = 0;
+        if(x>this.x-margin && x<this.x+50+margin && y>this.y-margin && y<this.y+80+margin) {
+            pos.x = this.x;
+            pos.y = this.y;
+            //spawner.destroy(this);
+            return pos;
+        }
+        return pos;
+    }
 }

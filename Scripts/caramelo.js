@@ -7,7 +7,7 @@ function Caramelo(canvas, _dir, _x, _y){
     this.ctx = canvas.getContext('2d');
     this.dir = _dir;
     this.sprite = new Image();
-    this.sprite.src = "Sprites/Monstro_Final.png";
+    this.sprite.src = "Sprites/candy.png";
     this.x = _x;
     this.y = _y;
 
