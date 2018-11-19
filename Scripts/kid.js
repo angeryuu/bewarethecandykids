@@ -15,6 +15,8 @@ function kid(spawner, canvas, _x, _y){
     this.dir.x = this.dir.x/this.mod;
     this.dir.y = this.dir.y/this.mod;
 
+    this.target = null;
+
     this.update = function (progress) {
         this.x += this.dir.x * progress * this.speed;
         this.y += this.dir.y * progress * this.speed;
@@ -36,10 +38,11 @@ function kid(spawner, canvas, _x, _y){
         if(x>this.x-margin && x<this.x+50+margin && y>this.y-margin && y<this.y+80+margin) {
             pos.x = this.x;
             pos.y = this.y;
-            this.destroy();
-            return pos;
+            //this.destroy();
+            return this;
+        }else{
+            return null;
         }
-        return pos;
     }
 
     this.destroy = function() {

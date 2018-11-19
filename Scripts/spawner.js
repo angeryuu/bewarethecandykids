@@ -40,7 +40,7 @@ function spawner(canvas){
         var returnkid;
         kids.forEach( function(valor, i, array){
             var auxkid = kids[i].click(x,y);
-            if ((auxkid.x != 0 || auxkid.y != 0)) returnkid = auxkid;
+            if (auxkid != null) returnkid = auxkid;
         });
         return returnkid;
     }
