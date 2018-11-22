@@ -5,9 +5,11 @@ function gameState(container){
     this.value = 'gameState';
     container.state = this;
     this.next = function(){
-        window.cancelAnimationFrame(requestId);
-        requestId = undefined
-        return new endState(self.container);
+            console.log("next");
+            window.cancelAnimationFrame(requestId);
+            console.log("NEXT");
+            canvas.removeEventListener('click', onClick, false);
+            return new endState(self);
     }
 
     var canvas,
@@ -31,22 +33,7 @@ function gameState(container){
         pj = new Jugador(canvas);
         kidSpawner = new spawner(canvas);
 
-        canvas.addEventListener('click', function(event) {
-            var x = event.pageX - canvasLeft,
-                y = event.pageY - canvasTop;
-            var newKid = kidSpawner.click(x,y);
-            if (newKid != null && newKid.target == null) {
-                var dir = [0,0];
-                dir.x = newKid.x+25 - (pj.x + pj.sprite.width/2);
-                dir.y = newKid.y+40 - (pj.y + pj.sprite.height/2);
-                var mod = Math.sqrt((dir.x*dir.x)+(dir.y*dir.y));
-                dir.x = dir.x/mod;
-                dir.y = dir.y/mod;
-                newKid.target = true;
-                caramelos.push(new Caramelo(canvas, newKid, dir, pj.x + pj.sprite.width/2, pj.y + pj.sprite.height/2));
-            }
-            currentState = self.next();
-        }, false);
+        canvas.addEventListener('click', onClick, false);
 
         requestId = window.requestAnimationFrame(loop);
     }
@@ -74,13 +61,30 @@ function gameState(container){
     }
         
     function loop(timestamp) {
-        var progress = timestamp - lastRender
+        var progress = timestamp - lastRender;
         
-        update(progress)
-        draw()
+        update(progress);
+        draw();
         
-        lastRender = timestamp
-        if(requestId) window.requestAnimationFrame(loop)
+        lastRender = timestamp;
+        requestId = window.requestAnimationFrame(loop);
+    }
+
+    function onClick(){
+        var x = event.pageX - canvasLeft,
+        y = event.pageY - canvasTop;
+        var newKid = kidSpawner.click(x,y);
+        if (newKid != null && newKid.target == null) {
+            var dir = [0,0];
+            dir.x = newKid.x+25 - (pj.x + pj.sprite.width/2);
+            dir.y = newKid.y+40 - (pj.y + pj.sprite.height/2);
+            var mod = Math.sqrt((dir.x*dir.x)+(dir.y*dir.y));
+            dir.x = dir.x/mod;
+            dir.y = dir.y/mod;
+            newKid.target = true;
+            caramelos.push(new Caramelo(canvas, newKid, dir, pj.x + pj.sprite.width/2, pj.y + pj.sprite.height/2));
+        }
+        //currentState.state = currentState.changeState();
     }
 
     create();

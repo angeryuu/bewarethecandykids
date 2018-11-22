@@ -24,6 +24,7 @@ function kid(spawner, canvas, _x, _y){
         // Si llega al centro se acaba la partida
         if(Math.abs(this.x-canvas.width/2)<30 && Math.abs(this.y-canvas.height/2)<30) {
             this.destroy();
+            //currentState.state = currentState.changeState();
         }
     }
 
