@@ -23,8 +23,13 @@ function kid(spawner, canvas, _x, _y){
 
         // Si llega al centro se acaba la partida
         if(Math.abs(this.x-canvas.width/2)<30 && Math.abs(this.y-canvas.height/2)<30) {
+            //this.destroy();
+            currentState.state.stopLoop();
+        }
+
+        //Si sale de la pantalla el enemigo muere
+        if(this.x>canvas.width || this.y>canvas.height || this.x<0 || this.y<0){
             this.destroy();
-            //currentState.state = currentState.changeState();
         }
     }
 

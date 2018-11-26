@@ -6,10 +6,16 @@ function gameState(container){
     container.state = this;
     this.next = function(){
             console.log("next");
-            window.cancelAnimationFrame(requestId);
-            console.log("NEXT");
             canvas.removeEventListener('click', onClick, false);
             return new endState(self);
+    }
+
+    var stop;
+    this.stopLoop = function(){
+        /*if (requestId) {
+            window.cancelAnimationFrame(requestId);
+        }*/
+        stop = true;
     }
 
     var canvas,
@@ -36,6 +42,7 @@ function gameState(container){
         canvas.addEventListener('click', onClick, false);
 
         requestId = window.requestAnimationFrame(loop);
+        stop = false;
     }
 
     function update(progress) {
@@ -61,13 +68,19 @@ function gameState(container){
     }
         
     function loop(timestamp) {
-        var progress = timestamp - lastRender;
+        if(!stop){
+            requestId = window.requestAnimationFrame(loop);
         
-        update(progress);
-        draw();
+            var progress = timestamp - lastRender;
         
-        lastRender = timestamp;
-        requestId = window.requestAnimationFrame(loop);
+            update(progress);
+            draw();
+        
+            lastRender = timestamp;
+        }else{
+            window.cancelAnimationFrame(requestId);
+            currentState.state = currentState.changeState();
+        }
     }
 
     function onClick(){
@@ -84,8 +97,10 @@ function gameState(container){
             newKid.target = true;
             caramelos.push(new Caramelo(canvas, newKid, dir, pj.x + pj.sprite.width/2, pj.y + pj.sprite.height/2));
         }
-        //currentState.state = currentState.changeState();
     }
 
     create();
 }
+
+
+
