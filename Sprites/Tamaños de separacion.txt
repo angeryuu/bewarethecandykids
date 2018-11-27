@@ -1,5 +1,15 @@
+Tamaños en X
+---------------------------------
 Demonio: 100
 Frankestein: 80
 Lobo: 70
 Bruja: 70
 Vampiro: 70
+
+Tamaños en Y
+----------------------------------
+Bruja: 0
+Demonio: 87
+Frankestein: 169
+Lobo: 287
+Vampiro: 373
