@@ -19,10 +19,8 @@ function Caramelo(canvas, target, _dir, _x, _y){
 
         if (this.x>target.x && this.x<target.x+50 && this.y>target.y && this.y<target.y+80)
         {
-            //target.destroy();
+            target.hit();
             this.destroy();
-            target.dir.x = target.dir.x * -1;
-            target.dir.y = target.dir.y * -1;
         }
     }
 

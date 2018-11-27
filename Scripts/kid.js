@@ -1,11 +1,11 @@
-function kid(spawner, canvas, _x, _y){
+function kid(spawner, canvas, _type, _x, _y){
 
     this.ctx = canvas.getContext('2d');
     this.sprite = new Image();
     this.sprite.src = "Sprites/kiddo.png";
     this.x = _x;
     this.y = _y;
-    this.speed = 0.2;
+    this.speed = 0.05;
     var margin = 10;
 
     this.dir = [0,0];
@@ -17,17 +17,21 @@ function kid(spawner, canvas, _x, _y){
 
     this.target = null;
 
+    this.type = _type;
+    this.health = 3;
+    this.vulnerable = false;
+
     this.update = function (progress) {
         this.x += this.dir.x * progress * this.speed;
         this.y += this.dir.y * progress * this.speed;
 
         // Si llega al centro se acaba la partida
         if(Math.abs(this.x-canvas.width/2)<30 && Math.abs(this.y-canvas.height/2)<30) {
-            //this.destroy();
-            currentState.state.stopLoop();
+            this.destroy();
+            //currentState.state.stopLoop();
         }
 
-        //Si sale de la pantalla el enemigo muere
+        // Si sale de la pantalla se destruye
         if(this.x>canvas.width || this.y>canvas.height || this.x<0 || this.y<0){
             this.destroy();
         }
@@ -53,5 +57,58 @@ function kid(spawner, canvas, _x, _y){
 
     this.destroy = function() {
         spawner.destroy(this);
+    }
+
+    this.hit = function() {
+        switch (this.type) {
+            case 0:     // Vampiro
+                //this.dir.x *= -1;
+                //this.dir.y *= -1;
+                this.destroy();
+            break;
+
+            case 1:     // Monstruo de Frankenstein
+                this.health--;
+                this.target = null;
+                if(this.health<=0) {
+                    //this.dir.x *= -1;
+                    //this.dir.y *= -1;
+                    this.destroy();
+                }
+            break;
+
+            case 2:     // Lobo
+            break;
+
+            case 3:     //Bruja
+                if(!this.vulnerable) {
+                    var keepLooping = true;
+                    while(keepLooping) {
+                        var kidx = Math.random()*canvas.width;
+                        var kidy = Math.random()*canvas.height;
+                        var module = Math.sqrt((((canvas.width/2) - kidx)*((canvas.width/2) - kidx) + ((canvas.height/2) - kidy)*((canvas.height/2) - kidy)));
+                        if(module>canvas.height/2) {
+                            keepLooping = false;
+                            this.vulnerable = true;
+                            this.target = null;
+                            this.x = kidx;
+                            this.y = kidy;
+                            
+                            this.dir.x = (canvas.width/2) - this.x;
+                            this.dir.y = (canvas.height/2) - this.y;
+                            this.mod = Math.sqrt((this.dir.x*this.dir.x + this.dir.y*this.dir.y));
+                            this.dir.x = this.dir.x/this.mod;
+                            this.dir.y = this.dir.y/this.mod;
+                        } else keepLooping = true;
+                    }
+                } else {
+                    this.destroy();
+                }
+            break;
+
+            case 4:     // Demonio
+
+            break;
+        }
     }
 }

@@ -6,7 +6,7 @@ function spawner(canvas){
     var kids = [];
 
     this.update = function (progress) {
-        if(kids.length<15) this.createKid();
+        if(kids.length<1) this.createKid();
         kids.forEach( function(valor, i, array){
             kids[i].update(progress);
         });
@@ -33,7 +33,7 @@ function spawner(canvas){
                 keepLooping = false;
             } else keepLooping = true;
         }
-        kids.push(new kid(this, canvas, kidx, kidy));
+        kids.push(new kid(this, canvas, 3, kidx, kidy));
     }
 
     this.click = function (x,y) {
