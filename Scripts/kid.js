@@ -21,6 +21,8 @@ function kid(spawner, canvas, _type, _x, _y){
     this.health = 3;
     this.vulnerable = false;
 
+    var audio = new Audio("Audio/Prueba.mp3");
+
     this.update = function (progress) {
         this.x += this.dir.x * progress * this.speed;
         this.y += this.dir.y * progress * this.speed;
@@ -60,20 +62,28 @@ function kid(spawner, canvas, _type, _x, _y){
     }
 
     this.hit = function() {
+
+        if(audio.paused) {
+            audio.play();
+        } else {
+            audio.currentTime = 0;
+        }
+        audio.play();
+
         switch (this.type) {
             case 0:     // Vampiro
                 //this.dir.x *= -1;
                 //this.dir.y *= -1;
-                this.destroy();
+                this.x<canvas.width/2 ? this.dir.x = -1 : this.dir.x = 1;
+                this.dir.y = 0;
             break;
 
             case 1:     // Monstruo de Frankenstein
                 this.health--;
                 this.target = null;
                 if(this.health<=0) {
-                    //this.dir.x *= -1;
-                    //this.dir.y *= -1;
-                    this.destroy();
+                    this.x<canvas.width/2 ? this.dir.x = -1 : this.dir.x = 1;
+                    this.dir.y = 0;
                 }
             break;
 
@@ -102,7 +112,9 @@ function kid(spawner, canvas, _type, _x, _y){
                         } else keepLooping = true;
                     }
                 } else {
-                    this.destroy();
+                    this.x<canvas.width/2 ? this.dir.x = -1 : this.dir.x = 1;
+                    this.dir.y = 0;
+                    this.speed = 0.2;
                 }
             break;
 

@@ -1,7 +1,7 @@
 function Jugador(canvas){
 
     this.draw = function (){
-        this.ctx.drawImage(this.sprite, this.x, this.y);
+        //this.ctx.drawImage(this.sprite, this.x, this.y);
     }
 
     this.ctx = canvas.getContext('2d');

@@ -25,6 +25,14 @@ function gameState(container){
 
     var requestId;
 
+    var background = [];
+    for(var i=0; i<4; i++) {
+        background[i] = new Image();
+        background[i].src = "Sprites/background" + i + ".png";
+    }
+    //background[3] = new Image();
+    //background[3] = "Sprites/background3.jpg";
+
     var lastRender = 0;
             
     var pj;
@@ -43,6 +51,14 @@ function gameState(container){
 
         requestId = window.requestAnimationFrame(loop);
         stop = false;
+
+        var music = new Audio("Audio/ckgameTheme.mp3");
+        music.addEventListener('ended', function() {
+            this.currentTime = 0;
+            this.play();
+        },false);
+        music.volume = 0.8;
+        music.play();
     }
 
     function update(progress) {
@@ -56,8 +72,11 @@ function gameState(container){
     }
         
     function draw() {
-
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.drawImage(background[3],0,0);
+        ctx.drawImage(background[2],0,0);
+
         pj.draw();
 
         caramelos.forEach( function(valor, i, array){
@@ -65,6 +84,9 @@ function gameState(container){
         });
 
         kidSpawner.draw();
+
+        ctx.drawImage(background[1],0,0);
+        ctx.drawImage(background[0],0,0);
     }
         
     function loop(timestamp) {
