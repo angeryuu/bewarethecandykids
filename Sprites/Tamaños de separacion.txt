@@ -1,0 +1,5 @@
+Demonio: 100
+Frankestein: 80
+Lobo: 70
+Bruja: 70
+Vampiro: 70
