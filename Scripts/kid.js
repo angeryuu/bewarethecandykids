@@ -88,6 +88,16 @@ function kid(spawner, canvas, _type, _x, _y){
             break;
 
             case 2:     // Lobo
+                if(!this.vulnerable) {
+                    this.vulnerable = true;
+                    this.target = null;
+                    this.x += this.dir.x * -150;
+                    this.y += this.dir.y * -150;
+                } else {
+                    this.x<canvas.width/2 ? this.dir.x = -1 : this.dir.x = 1;
+                    this.dir.y = 0;
+                    this.speed = 0.2;
+                }
             break;
 
             case 3:     //Bruja
