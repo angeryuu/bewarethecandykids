@@ -33,7 +33,7 @@ function spawner(canvas){
                 keepLooping = false;
             } else keepLooping = true;
         }
-        kids.push(new kid(this, canvas, 3, kidx, kidy));
+        kids.push(new kid(this, canvas, 0, kidx, kidy));
     }
 
     this.click = function (x,y) {

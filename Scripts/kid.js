@@ -21,8 +21,36 @@ function kid(spawner, canvas, _type, _x, _y){
     this.health = 3;
     this.vulnerable = false;
 
-    var audio = new Audio("Audio/Prueba.mp3");
-
+    var appearSound, chewSound,goSound;
+//cargarsonidos
+switch (this.type) 
+{
+    case 0: 
+    appearSound=new Audio("Audio/Vampiro/v_aparece.mp3");  
+    goSound=new Audio("Audio/Vampiro/v_mastica.mp3");
+    break;
+    case 1: 
+    appearSound=new Audio("Audio/Frankestein/f_aparece.mp3");
+    chewSound=new Audio("Audio/Frankestein/f_bocado.mp3");
+    goSound=new Audio("Audio/Frankestein/f_mastica.mp3");
+    break;
+    case 2: 
+    appearSound=new Audio("Audio/Lobo/l_aparece.mp3");
+    chewSound=new Audio("Audio/Lobo/l_desplaza.mp3");
+    goSound=new Audio("Audio/Lobo/l_mastica.mp3");
+    break;
+    case 3: 
+    appearSound=new Audio("Audio/Bruja/b_aparece.mp3");
+    chewSound=new Audio("Audio/Bruja/b_tele.mp3");
+    goSound=new Audio("Audio/Bruja/b_mastica.mp3");
+    break;
+    case 4: 
+    appearSound=new Audio("Audio/Demonio/d_aparece.mp3");
+    chewSound=new Audio("Audio/Demonio/d_divide.mp3");
+    goSound=new Audio("Audio/Demonio/d_mastica.mp3");
+    break;
+}
+    appearSound.play();
     this.update = function (progress) {
         this.x += this.dir.x * progress * this.speed;
         this.y += this.dir.y * progress * this.speed;
@@ -63,17 +91,18 @@ function kid(spawner, canvas, _type, _x, _y){
 
     this.hit = function() {
 
-        if(audio.paused) {
-            audio.play();
+        /*if(audio.paused) {
+        //   audio.play();
         } else {
             audio.currentTime = 0;
         }
-        audio.play();
+      //  audio.play();*/
 
         switch (this.type) {
             case 0:     // Vampiro
                 //this.dir.x *= -1;
                 //this.dir.y *= -1;
+                goSound.play();
                 this.x<canvas.width/2 ? this.dir.x = -1 : this.dir.x = 1;
                 this.dir.y = 0;
             break;
@@ -82,18 +111,23 @@ function kid(spawner, canvas, _type, _x, _y){
                 this.health--;
                 this.target = null;
                 if(this.health<=0) {
+                    goSound.play();
                     this.x<canvas.width/2 ? this.dir.x = -1 : this.dir.x = 1;
                     this.dir.y = 0;
+                }else{
+                    chewSound.play();
                 }
             break;
 
             case 2:     // Lobo
                 if(!this.vulnerable) {
+                    chewSound.play();
                     this.vulnerable = true;
                     this.target = null;
                     this.x += this.dir.x * -150;
                     this.y += this.dir.y * -150;
                 } else {
+                    goSound.play();
                     this.x<canvas.width/2 ? this.dir.x = -1 : this.dir.x = 1;
                     this.dir.y = 0;
                     this.speed = 0.2;
@@ -102,6 +136,7 @@ function kid(spawner, canvas, _type, _x, _y){
 
             case 3:     //Bruja
                 if(!this.vulnerable) {
+                    chewSound.play();
                     var keepLooping = true;
                     while(keepLooping) {
                         var kidx = Math.random()*canvas.width;
@@ -122,6 +157,7 @@ function kid(spawner, canvas, _type, _x, _y){
                         } else keepLooping = true;
                     }
                 } else {
+                    goSound.play();
                     this.x<canvas.width/2 ? this.dir.x = -1 : this.dir.x = 1;
                     this.dir.y = 0;
                     this.speed = 0.2;

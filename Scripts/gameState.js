@@ -38,6 +38,7 @@ function gameState(container){
     var pj;
     var caramelos = [];
 
+    var candySound;
     function create(){
         canvas = document.getElementById('gameCanvas');
         canvasLeft = canvas.offsetLeft;
@@ -51,14 +52,16 @@ function gameState(container){
 
         requestId = window.requestAnimationFrame(loop);
         stop = false;
-
+        candySound=new Audio("Audio/fx_caramelo.mp3");
         var music = new Audio("Audio/ckgameTheme.mp3");
         music.addEventListener('ended', function() {
             this.currentTime = 0;
             this.play();
         },false);
-        music.volume = 0.8;
+        music.volume = 0.5 ;
         music.play();
+     
+     
     }
 
     function update(progress) {
@@ -106,6 +109,7 @@ function gameState(container){
     }
 
     function onClick(){
+
         var x = event.pageX - canvasLeft,
         y = event.pageY - canvasTop;
         var newKid = kidSpawner.click(x,y);
@@ -117,6 +121,7 @@ function gameState(container){
             dir.x = dir.x/mod;
             dir.y = dir.y/mod;
             newKid.target = true;
+            candySound.play();
             caramelos.push(new Caramelo(canvas, newKid, dir, pj.x + pj.sprite.width/2, pj.y + pj.sprite.height/2));
         }
     }
