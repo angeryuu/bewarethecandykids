@@ -4,9 +4,16 @@ function spawner(canvas){
 
     var keepLooping;
     var kids = [];
+    var maxKids = 10;
+    var counter = 0;
 
     this.update = function (progress) {
-        if(kids.length<1) this.createKid();
+        counter += progress;
+        if(counter >= 1000) {
+            counter = 0;
+            if(kids.length<maxKids) this.createKid();
+        }
+
         kids.forEach( function(valor, i, array){
             kids[i].update(progress);
         });
@@ -33,7 +40,8 @@ function spawner(canvas){
                 keepLooping = false;
             } else keepLooping = true;
         }
-        kids.push(new kid(this, canvas, 0, kidx, kidy));
+        var type = Math.floor(Math.random() * (3 - 0 + 1));
+        kids.push(new kid(this, canvas, type, kidx, kidy));
     }
 
     this.click = function (x,y) {

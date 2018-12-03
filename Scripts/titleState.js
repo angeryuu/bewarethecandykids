@@ -38,7 +38,6 @@ function titleState(container){
     function onClick(){
         var x = event.pageX - canvasLeft,
         y = event.pageY - canvasTop;
-        console.log(x + ":" + y);
         if((x > playButton.x && x < playButton.x + playButton.width) && (y > playButton.y && y < playButton.y + playButton.height)){
             currentState.state = currentState.changeState("gameState");
         }else if((x > optionButton.x && x < optionButton.x + optionButton.width) && (y > optionButton.y && y < optionButton.y + optionButton.height)){

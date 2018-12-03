@@ -30,8 +30,6 @@ function gameState(container){
         background[i] = new Image();
         background[i].src = "Sprites/background" + i + ".png";
     }
-    //background[3] = new Image();
-    //background[3] = "Sprites/background3.jpg";
 
     var lastRender = 0;
             

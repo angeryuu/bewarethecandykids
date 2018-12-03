@@ -6,6 +6,8 @@ function kid(spawner, canvas, _type, _x, _y){
     this.x = _x;
     this.y = _y;
     this.speed = 0.05;
+    this.runSpeed = 0.15;
+
     var margin = 10;
 
     this.dir = [0,0];
@@ -105,6 +107,7 @@ switch (this.type)
                 goSound.play();
                 this.x<canvas.width/2 ? this.dir.x = -1 : this.dir.x = 1;
                 this.dir.y = 0;
+                this.speed = this.runSpeed;
             break;
 
             case 1:     // Monstruo de Frankenstein
@@ -114,6 +117,7 @@ switch (this.type)
                     goSound.play();
                     this.x<canvas.width/2 ? this.dir.x = -1 : this.dir.x = 1;
                     this.dir.y = 0;
+                    this.speed = this.runSpeed;
                 }else{
                     chewSound.play();
                 }
@@ -130,7 +134,7 @@ switch (this.type)
                     goSound.play();
                     this.x<canvas.width/2 ? this.dir.x = -1 : this.dir.x = 1;
                     this.dir.y = 0;
-                    this.speed = 0.2;
+                    this.speed = this.runSpeed;
                 }
             break;
 
@@ -160,7 +164,7 @@ switch (this.type)
                     goSound.play();
                     this.x<canvas.width/2 ? this.dir.x = -1 : this.dir.x = 1;
                     this.dir.y = 0;
-                    this.speed = 0.2;
+                    this.speed = this.runSpeed;
                 }
             break;
 
