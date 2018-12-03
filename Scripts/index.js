@@ -2,9 +2,9 @@ var currentState;
 
 function HeadingState(){
     var self = this;
-    this.state = new gameState(self);
-    this.changeState = function(){
-        return self.state.next();
+    this.state = new titleState(self);
+    this.changeState = function(_state){
+        return self.state.next(_state);
     }
 }
 
