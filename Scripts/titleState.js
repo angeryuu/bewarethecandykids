@@ -26,6 +26,8 @@ function titleState(container){
         canvasTop = canvas.offsetTop;
         ctx = canvas.getContext('2d');
 
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
         playButton = new Button("PLAY", "#2bd5a2", 100, 200, 100, 50, canvas);
         playButton.draw();
 
