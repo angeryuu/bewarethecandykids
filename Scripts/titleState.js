@@ -42,7 +42,7 @@ function titleState(container){
             this.currentTime = 0;
             this.play();
         },false);
-        music.volume = 0.02*1.5 ;
+        music.volume = 0.02*1.7 ;
         music.play();
     }
 
