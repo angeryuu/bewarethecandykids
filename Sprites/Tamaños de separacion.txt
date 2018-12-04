@@ -18,13 +18,14 @@ Frankestein: 169
 Lobo: 287
 Vampiro: 373
 _________________________________________________
-GATO CON CALABAZA
+GATO CON CALABAZA Y CARAMELO
 _________________________________________________
 
 Tamaño en X
 ---------------------
 Calabaza: 120
 Gato: 100
+Caramelo: 50
 
 Tamaño en Y
 -------------------
