@@ -37,7 +37,7 @@ switch (this.type)
     goSound=audios[4];
     break;
     case 2: 
-    appearSound=naudios[5];
+    appearSound=audios[5];
     chewSound=audios[6];
     goSound=audios[7];
     break;

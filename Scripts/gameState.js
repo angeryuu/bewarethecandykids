@@ -4,10 +4,11 @@ function gameState(container){
     this.container = container;
     this.value = 'gameState';
     container.state = this;
-    this.next = function(){
-            console.log("next");
+    this.next = function(_state){
             canvas.removeEventListener('click', onClick, false);
-            return new endState(self);
+            if(_state == "endState"){
+                return new endState(self);
+            }
     }
 
     var stop;

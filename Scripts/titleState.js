@@ -5,6 +5,7 @@ function titleState(container){
     this.value = 'gameState';
     container.state = this;
     this.next = function(_state){
+        canvas.removeEventListener('click', onClick, false);
         if(_state == "gameState"){
             return new gameState(self);
         }else if(_state == "optionState"){

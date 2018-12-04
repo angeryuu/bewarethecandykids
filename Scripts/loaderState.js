@@ -4,7 +4,7 @@ function loaderState(container){
     this.value = 'loaderState';
     container.state = this;
     this.next = function(_state){
-        
+        canvas.removeEventListener('click', onClick, false);
         if(_state == "titleState"){
             return new titleState(self);
         }

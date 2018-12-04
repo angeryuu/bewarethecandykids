@@ -3,7 +3,7 @@ function endState(container){
     this.container = container;
     this.value = 'gameState';
     container.state = this;
-    this.next = function(){
+    this.next = function(_state){
         canvas.removeEventListener('click', onClick, false);
         if(_state == "titleState"){
             return new titleState(self);

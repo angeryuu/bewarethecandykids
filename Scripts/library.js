@@ -33,7 +33,6 @@ function preloadAudio(url, i) {
 var loaded = 0;
 function loadedAudio() {
     loaded++;
-    console.log(loaded);
     if (loaded == backgroundFiles.length + audioFiles.length){
         currentState.state.playButton.draw();
     }
@@ -47,7 +46,6 @@ function preloadImage(url, i){
 
 function loadedImage() {
     loaded++;
-    console.log(loaded);
     if (loaded == backgroundFiles.length + audioFiles.length){
         currentState.state.playButton.draw();
     }
