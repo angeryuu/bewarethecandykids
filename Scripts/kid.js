@@ -1,5 +1,5 @@
 function kid(spawner, canvas, _type, _x, _y) {
-
+    var multVol=1.5;
     this.ctx = canvas.getContext('2d');
     this.sprite = new Image();
     this.spriteWidth = 0;
@@ -40,6 +40,9 @@ function kid(spawner, canvas, _type, _x, _y) {
         case 0:
             appearSound = audios[0];
             goSound = audios[1];
+            appearSound.volume = 0.02*multVol;//MULTVOL=1.2
+            goSound.volume=0.02*multVol;
+
             this.spriteHeight = 87;
             this.spriteWidth = 70;
             this.ticksPerFrame = 8;
@@ -54,6 +57,10 @@ function kid(spawner, canvas, _type, _x, _y) {
             appearSound = audios[2];
             chewSound = audios[3];
             goSound = audios[4];
+            appearSound.volume = 0.014*multVol;
+            chewSound.volume =  0.019*multVol;
+            goSound.volume= 0.016*multVol;
+
             this.spriteHeight = 118;
             this.spriteWidth = 80;
             this.ticksPerFrame = 8;
@@ -68,6 +75,10 @@ function kid(spawner, canvas, _type, _x, _y) {
             appearSound = audios[5];
             chewSound = audios[6];
             goSound = audios[7];
+            appearSound.volume = 0.08*multVol;
+            chewSound.volume = 0.15*multVol;
+            goSound.volume=0.1*multVol;
+
             this.spriteHeight = 86;
             this.spriteWidth = 70;
             this.ticksPerFrame = 8;
@@ -83,6 +94,10 @@ function kid(spawner, canvas, _type, _x, _y) {
             appearSound = audios[8];
             chewSound = audios[9];
             goSound = audios[10];
+            appearSound.volume =  0.02*multVol;
+            chewSound.volume =  0.02*multVol;
+            goSound.volume= 0.02*multVol;
+
             this.spriteHeight = 87;
             this.spriteWidth = 70;
             this.ticksPerFrame = 8;
@@ -97,6 +112,10 @@ function kid(spawner, canvas, _type, _x, _y) {
             appearSound = audios[11];
             chewSound = audios[12];
             goSound = audios[13];
+            appearSound.volume =  0.02*multVol;
+            chewSound.volume =  0.02*multVol;
+            goSound.volume= 0.02*multVol;
+            
             this.spriteHeight = 82;
             this.spriteWidth = 100;
             this.ticksPerFrame = 8;
