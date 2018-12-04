@@ -1,5 +1,5 @@
 function titleState(container){
-
+    var music;
     var self = this;
     this.container = container;
     this.value = 'gameState';
@@ -36,9 +36,18 @@ function titleState(container){
         optionButton.draw();
     
         canvas.addEventListener("click", onClick, false);
+
+        music = new Audio("Audio/ckmenuTheme.mp3");
+        music.addEventListener('ended', function() {
+            this.currentTime = 0;
+            this.play();
+        },false);
+        music.volume = 1.0 ;
+        music.play();
     }
 
     function onClick(){
+        music.pause();
         var x = event.pageX - canvasLeft,
         y = event.pageY - canvasTop;
         if((x > playButton.x && x < playButton.x + playButton.width) && (y > playButton.y && y < playButton.y + playButton.height)){
