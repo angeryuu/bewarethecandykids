@@ -57,7 +57,7 @@ function kid(spawner, canvas, _type, _x, _y) {
             appearSound = audios[2];
             chewSound = audios[3];
             goSound = audios[4];
-            appearSound.volume = 0.024*multVol;
+            appearSound.volume = 0.1*multVol;
             chewSound.volume =  0.029*multVol;
             goSound.volume= 0.026*multVol;
 
