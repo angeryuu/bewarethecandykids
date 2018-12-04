@@ -46,13 +46,12 @@ function gameState(container){
         requestId = window.requestAnimationFrame(loop);
         stop = false;
         candySound=new Audio("Audio/fx_caramelo.mp3");
-        candySound.volume=0.08;
         var music = new Audio("Audio/ckgameTheme.mp3");
         music.addEventListener('ended', function() {
             this.currentTime = 0;
             this.play();
         },false);
-        music.volume = 0.04*2.5 ;
+        music.volume = 0.5 ;
         music.play();
      
      
@@ -64,7 +63,7 @@ function gameState(container){
             caramelos[i].update(progress);
             if(caramelos[i].destroyed) caramelos.splice(i,1);
         });
-
+        pj.update();
         kidSpawner.update(progress);
     }
         
@@ -118,6 +117,7 @@ function gameState(container){
             candySound.play();
             caramelos.push(new Caramelo(canvas, newKid, dir, pj.x + pj.sprite.width/2, pj.y + pj.sprite.height/2));
         }
+        pj.throw(x);
     }
 
     create();
