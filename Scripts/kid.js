@@ -1,8 +1,14 @@
-function kid(spawner, canvas, _type, _x, _y){
+function kid(spawner, canvas, _type, _x, _y) {
 
     this.ctx = canvas.getContext('2d');
     this.sprite = new Image();
-    this.sprite.src = "Sprites/kiddo.png";
+    this.spriteWidth = 0;
+    this.spriteHeight = 0;
+    this.tickCount = 0;
+    this.frameIndex = 0,
+        this.ticksPerFrame = 0,
+        this.numberOfFrames = 1;
+
     this.x = _x;
     this.y = _y;
     this.speed = 0.05;
@@ -10,12 +16,12 @@ function kid(spawner, canvas, _type, _x, _y){
 
     var margin = 10;
 
-    this.dir = [0,0];
-    this.dir.x = (canvas.width/2) - this.x;
-    this.dir.y = (canvas.height/2) - this.y;
-    this.mod = Math.sqrt((this.dir.x*this.dir.x + this.dir.y*this.dir.y));
-    this.dir.x = this.dir.x/this.mod;
-    this.dir.y = this.dir.y/this.mod;
+    this.dir = [0, 0];
+    this.dir.x = (canvas.width / 2) - this.x;
+    this.dir.y = (canvas.height / 2) - this.y;
+    this.mod = Math.sqrt((this.dir.x * this.dir.x + this.dir.y * this.dir.y));
+    this.dir.x = this.dir.x / this.mod;
+    this.dir.y = this.dir.y / this.mod;
 
     this.target = null;
 
@@ -23,75 +29,154 @@ function kid(spawner, canvas, _type, _x, _y){
     this.health = 3;
     this.vulnerable = false;
 
-    var appearSound, chewSound,goSound;
-//cargarsonidos
-switch (this.type) 
-{
-    case 0: 
-    appearSound=audios[0];  
-    goSound=audios[1];
-    break;
-    case 1: 
-    appearSound=audios[2];
-    chewSound=audios[3];
-    goSound=audios[4];
-    break;
-    case 2: 
-    appearSound=audios[5];
-    chewSound=audios[6];
-    goSound=audios[7];
-    break;
-    case 3: 
-    appearSound=audios[8];
-    chewSound=audios[9];
-    goSound=audios[10];
-    break;
-    case 4: 
-    appearSound=audios[11];
-    chewSound=audios[12];
-    goSound=audios[13];
-    break;
-}
+    this.inverso = false;
+    if (this.x < canvas.width / 2) {
+        this.inverso = true;
+    }
+
+    var appearSound, chewSound, goSound;
+    //cargarsonidos
+    switch (this.type) {
+        case 0:
+            appearSound = audios[0];
+            goSound = audios[1];
+            this.spriteHeight = 87;
+            this.spriteWidth = 70;
+            this.ticksPerFrame = 8;
+            this.numberOfFrames = 9;
+            if (this.inverso) {
+                this.sprite.src = "Sprites/vampiro-inverso.png";
+            } else {
+                this.sprite.src = "Sprites/vampiro.png";
+            }
+            break;
+        case 1:
+            appearSound = audios[2];
+            chewSound = audios[3];
+            goSound = audios[4];
+            this.spriteHeight = 118;
+            this.spriteWidth = 80;
+            this.ticksPerFrame = 8;
+            this.numberOfFrames = 9;
+            if (this.inverso) {
+                this.sprite.src = "Sprites/frankestein-inverso.png";
+            } else {
+                this.sprite.src = "Sprites/frankestein.png";
+            }
+            break;
+        case 2:
+            appearSound = audios[5];
+            chewSound = audios[6];
+            goSound = audios[7];
+            this.spriteHeight = 86;
+            this.spriteWidth = 70;
+            this.ticksPerFrame = 8;
+            this.numberOfFrames = 9;
+            if (this.inverso) {
+                this.sprite.src = "Sprites/lobo-inverso.png";
+            } else {
+                this.sprite.src = "Sprites/lobo.png";
+            }
+
+            break;
+        case 3:
+            appearSound = audios[8];
+            chewSound = audios[9];
+            goSound = audios[10];
+            this.spriteHeight = 87;
+            this.spriteWidth = 70;
+            this.ticksPerFrame = 8;
+            this.numberOfFrames = 9;
+            if (this.inverso) {
+                this.sprite.src = "Sprites/bruja-inverso.png";
+            } else {
+                this.sprite.src = "Sprites/bruja.png";
+            }
+            break;
+        case 4:
+            appearSound = audios[11];
+            chewSound = audios[12];
+            goSound = audios[13];
+            this.spriteHeight = 82;
+            this.spriteWidth = 100;
+            this.ticksPerFrame = 8;
+            this.numberOfFrames = 9;
+            if (this.inverso) {
+                this.sprite.src = "Sprites/demon-inverso.png";
+            } else {
+                this.sprite.src = "Sprites/demon.png";
+            }
+            break;
+    }
+
+    //para borrar luego
+
+
+
+    //
+
     appearSound.play();
     this.update = function (progress) {
         this.x += this.dir.x * progress * this.speed;
         this.y += this.dir.y * progress * this.speed;
 
+        this.tickCount += 1;
+
+        if (this.tickCount > this.ticksPerFrame) {
+
+            this.tickCount = 0;
+            // If the current frame index is in range
+            if (this.frameIndex < this.numberOfFrames - 1) {
+                // Go to the next frame
+                this.frameIndex += 1;
+            } else {
+                this.frameIndex = 0;
+            }
+        }
+
         // Si llega al centro se acaba la partida
-        if(Math.abs(this.x-canvas.width/2)<30 && Math.abs(this.y-canvas.height/2)<30) {
+        if (Math.abs(this.x - canvas.width / 2) < 30 && Math.abs(this.y - canvas.height / 2) < 30) {
             this.destroy();
             //currentState.state.stopLoop();
         }
 
         // Si sale de la pantalla se destruye
-        if(this.x>canvas.width || this.y>canvas.height || this.x<0 || this.y<0){
+        if (this.x > canvas.width || this.y > canvas.height || this.x < 0 || this.y < 0) {
             this.destroy();
         }
     }
 
-    this.draw = function (){
-        this.ctx.drawImage(this.sprite, this.x, this.y);
+    this.draw = function () {
+        this.ctx.drawImage(this.sprite,
+            this.frameIndex * this.spriteWidth,
+            0,
+            this.spriteWidth,
+            this.spriteHeight,
+            this.x,
+            this.y,
+            this.spriteWidth,
+            this.spriteHeight);
     }
 
-    this.click = function (x,y) {
+    this.click = function (x, y) {
         var pos = [];
         pos.x = 0;
         pos.y = 0;
-        if(x>this.x-margin && x<this.x+50+margin && y>this.y-margin && y<this.y+80+margin) {
+        if (x > this.x - margin && x < this.x + 50 + margin && y > this.y - margin && y < this.y + 80 + margin) {
             pos.x = this.x;
             pos.y = this.y;
             //this.destroy();
             return this;
-        }else{
+        } else {
             return null;
         }
     }
 
-    this.destroy = function() {
+    this.destroy = function () {
         spawner.destroy(this);
     }
 
-    this.hit = function() {
+    this.hit = function () {
 
         /*if(audio.paused) {
         //   audio.play();
@@ -101,30 +186,40 @@ switch (this.type)
       //  audio.play();*/
 
         switch (this.type) {
-            case 0:     // Vampiro
+            case 0: // Vampiro
                 //this.dir.x *= -1;
                 //this.dir.y *= -1;
                 goSound.play();
-                this.x<canvas.width/2 ? this.dir.x = -1 : this.dir.x = 1;
+                this.x < canvas.width / 2 ? this.dir.x = -1 : this.dir.x = 1;
                 this.dir.y = 0;
                 this.speed = this.runSpeed;
-            break;
+                if (this.inverso) {
+                    this.sprite.src = "Sprites/vampiro.png";
+                } else {
+                    this.sprite.src = "Sprites/vampiro-inverso.png";
+                }
+                break;
 
-            case 1:     // Monstruo de Frankenstein
+            case 1: // Monstruo de Frankenstein
                 this.health--;
                 this.target = null;
-                if(this.health<=0) {
+                if (this.health <= 0) {
                     goSound.play();
-                    this.x<canvas.width/2 ? this.dir.x = -1 : this.dir.x = 1;
+                    this.x < canvas.width / 2 ? this.dir.x = -1 : this.dir.x = 1;
                     this.dir.y = 0;
                     this.speed = this.runSpeed;
-                }else{
+                    if (this.inverso) {
+                        this.sprite.src = "Sprites/frankestein.png";
+                    } else {
+                        this.sprite.src = "Sprites/frankestein-inverso.png";
+                    }
+                } else {
                     chewSound.play();
                 }
-            break;
+                break;
 
-            case 2:     // Lobo
-                if(!this.vulnerable) {
+            case 2: // Lobo
+                if (!this.vulnerable) {
                     chewSound.play();
                     this.vulnerable = true;
                     this.target = null;
@@ -132,45 +227,65 @@ switch (this.type)
                     this.y += this.dir.y * -150;
                 } else {
                     goSound.play();
-                    this.x<canvas.width/2 ? this.dir.x = -1 : this.dir.x = 1;
+                    this.x < canvas.width / 2 ? this.dir.x = -1 : this.dir.x = 1;
                     this.dir.y = 0;
                     this.speed = this.runSpeed;
+                    if (this.inverso) {
+                        this.sprite.src = "Sprites/lobo.png";
+                    } else {
+                        this.sprite.src = "Sprites/lobo-inverso.png";
+                    }
                 }
-            break;
+                break;
 
-            case 3:     //Bruja
-                if(!this.vulnerable) {
+            case 3: //Bruja
+
+                if (!this.vulnerable) {
                     chewSound.play();
                     var keepLooping = true;
-                    while(keepLooping) {
-                        var kidx = Math.random()*canvas.width;
-                        var kidy = Math.random()*canvas.height;
-                        var module = Math.sqrt((((canvas.width/2) - kidx)*((canvas.width/2) - kidx) + ((canvas.height/2) - kidy)*((canvas.height/2) - kidy)));
-                        if(module>canvas.height/2) {
+                    while (keepLooping) {
+                        var kidx = Math.random() * canvas.width;
+                        var kidy = Math.random() * canvas.height;
+                        var module = Math.sqrt((((canvas.width / 2) - kidx) * ((canvas.width / 2) - kidx) + ((canvas.height / 2) - kidy) * ((canvas.height / 2) - kidy)));
+                        if (module > canvas.height / 2) {
                             keepLooping = false;
                             this.vulnerable = true;
                             this.target = null;
                             this.x = kidx;
                             this.y = kidy;
-                            
-                            this.dir.x = (canvas.width/2) - this.x;
-                            this.dir.y = (canvas.height/2) - this.y;
-                            this.mod = Math.sqrt((this.dir.x*this.dir.x + this.dir.y*this.dir.y));
-                            this.dir.x = this.dir.x/this.mod;
-                            this.dir.y = this.dir.y/this.mod;
-                        } else keepLooping = true;
+                            this.dir.x = (canvas.width / 2) - this.x;
+                            this.dir.y = (canvas.height / 2) - this.y;
+                            this.mod = Math.sqrt((this.dir.x * this.dir.x + this.dir.y * this.dir.y));
+                            this.dir.x = this.dir.x / this.mod;
+                            this.dir.y = this.dir.y / this.mod;
+                        } else {
+                            keepLooping = true;
+                        }
+                    }
+                    if (this.x < canvas.width / 2) {
+                        this.inverso = true;
+                    }
+                    if (this.inverso) {
+                        this.sprite.src = "Sprites/bruja-inverso.png";
+                    } else {
+                        this.sprite.src = "Sprites/bruja.png";
                     }
                 } else {
                     goSound.play();
-                    this.x<canvas.width/2 ? this.dir.x = -1 : this.dir.x = 1;
+                    this.x < canvas.width / 2 ? this.dir.x = -1 : this.dir.x = 1;
                     this.dir.y = 0;
                     this.speed = this.runSpeed;
+                    if (this.inverso) {
+                        this.sprite.src = "Sprites/bruja.png";
+                    } else {
+                        this.sprite.src = "Sprites/bruja-inverso.png";
+                    }
                 }
-            break;
+                break;
 
-            case 4:     // Demonio
+            case 4: // Demonio
 
-            break;
+                break;
         }
     }
 }
