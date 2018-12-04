@@ -117,8 +117,9 @@ function gameState(container){
             newKid.target = true;
             candySound.play();
             caramelos.push(new Caramelo(canvas, newKid, dir, pj.x + pj.sprite.width/2, pj.y + pj.sprite.height/2));
+            pj.throw(x);
         }
-        pj.throw(x);
+        
     }
 
     create();
