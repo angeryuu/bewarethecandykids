@@ -6,12 +6,29 @@ function spawner(canvas){
     var kids = [];
     var maxKids = 10;
     var counter = 0;
+    var counterChangeWave = 0;
+    var spawnSpeed = 2000;
+    var wave = 1;
+    var score = 0;
+    var nKids = 10;
 
     this.update = function (progress) {
-        counter += progress;
-        if(counter >= 1000) {
-            counter = 0;
-            if(kids.length<maxKids) this.createKid();
+        if(counterChangeWave>0) {
+            counterChangeWave -= progress;
+            if(counterChangeWave<0) counterChangeWave = 0;
+        } else {
+            maxKids = wave * 3 + 10;
+            spawnSpeed = 2000 - wave*50;
+            if(spawnSpeed<0) spawnSpeed = 0;
+    
+            counter += progress;
+            if(counter >= spawnSpeed) {
+                counter = 0;
+                if(kids.length<maxKids) this.createKid();
+            }
+        }
+        if(score+kids.length == nKids && kids.length>0) {
+            counterChangeWave = 3000;
         }
 
         kids.forEach( function(valor, i, array){
@@ -26,6 +43,15 @@ function spawner(canvas){
     }
 
     this.destroy = function (_kid) {
+        score++;
+
+        if(score>=wave*10) {
+            wave ++;
+            nKids += 10;
+            counterChangeWave = 5000;
+            console.log("WAVE " + wave);
+        }
+
         var kidToDelete = kids.indexOf(_kid);
         if (kidToDelete > -1) kids.splice(kidToDelete, 1);
     }
