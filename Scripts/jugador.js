@@ -45,7 +45,7 @@ function Jugador(canvas) {
             this.spriteHeight = 87;
             this.tickCount = 0;
             this.frameIndex = 0;
-            this.ticksPerFrame = 4;
+            this.ticksPerFrame = 1;
             this.numberOfFrames = 6;
         } else {
             this.lanzando = true;
@@ -54,7 +54,7 @@ function Jugador(canvas) {
             this.spriteHeight = 87;
             this.tickCount = 0;
             this.frameIndex = 0;
-            this.ticksPerFrame = 4;
+            this.ticksPerFrame = 1;
             this.numberOfFrames = 6;
         }
     }
