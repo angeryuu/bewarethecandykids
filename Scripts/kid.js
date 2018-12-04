@@ -28,28 +28,28 @@ function kid(spawner, canvas, _type, _x, _y){
 switch (this.type) 
 {
     case 0: 
-    appearSound=new Audio("Audio/Vampiro/v_aparece.mp3");  
-    goSound=new Audio("Audio/Vampiro/v_mastica.mp3");
+    appearSound=audios[0];  
+    goSound=audios[1];
     break;
     case 1: 
-    appearSound=new Audio("Audio/Frankestein/f_aparece.mp3");
-    chewSound=new Audio("Audio/Frankestein/f_bocado.mp3");
-    goSound=new Audio("Audio/Frankestein/f_mastica.mp3");
+    appearSound=audios[2];
+    chewSound=audios[3];
+    goSound=audios[4];
     break;
     case 2: 
-    appearSound=new Audio("Audio/Lobo/l_aparece.mp3");
-    chewSound=new Audio("Audio/Lobo/l_desplaza.mp3");
-    goSound=new Audio("Audio/Lobo/l_mastica.mp3");
+    appearSound=naudios[5];
+    chewSound=audios[6];
+    goSound=audios[7];
     break;
     case 3: 
-    appearSound=new Audio("Audio/Bruja/b_aparece.mp3");
-    chewSound=new Audio("Audio/Bruja/b_tele.mp3");
-    goSound=new Audio("Audio/Bruja/b_mastica.mp3");
+    appearSound=audios[8];
+    chewSound=audios[9];
+    goSound=audios[10];
     break;
     case 4: 
-    appearSound=new Audio("Audio/Demonio/d_aparece.mp3");
-    chewSound=new Audio("Audio/Demonio/d_divide.mp3");
-    goSound=new Audio("Audio/Demonio/d_mastica.mp3");
+    appearSound=audios[11];
+    chewSound=audios[12];
+    goSound=audios[13];
     break;
 }
     appearSound.play();

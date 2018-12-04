@@ -4,7 +4,10 @@ function endState(container){
     this.value = 'gameState';
     container.state = this;
     this.next = function(){
-        return new endState(self);
+        canvas.removeEventListener('click', onClick, false);
+        if(_state == "titleState"){
+            return new titleState(self);
+        }
     }
     console.log("estado final");
     var canvas = document.getElementById('gameCanvas');
