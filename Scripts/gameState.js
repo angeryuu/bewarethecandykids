@@ -47,7 +47,7 @@ function gameState(container){
         stop = false;
         candySound=new Audio("Audio/fx_caramelo.mp3");
         candySound.volume=0.088;
-        var music = new Audio("Audio/ckgameTheme.mp3");
+        var music = ost[1];
         music.addEventListener('ended', function() {
             this.currentTime = 0;
             this.play();
@@ -102,7 +102,7 @@ function gameState(container){
         }
     }
 
-    function onClick(){
+    function onClick(event){
 
         var x = event.pageX - canvasLeft,
         y = event.pageY - canvasTop;

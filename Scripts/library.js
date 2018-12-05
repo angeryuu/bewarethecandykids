@@ -16,6 +16,12 @@ var audioFiles = [
 ];
 var audios = [];
 
+var musicFiles = [
+    "Audio/ckmenuTheme.mp3",
+    "Audio/ckgameTheme.mp3"
+];
+var ost = [];
+
 var backgroundFiles = [
     "Sprites/background0.png",
     "Sprites/background1.png",
@@ -24,29 +30,61 @@ var backgroundFiles = [
 ];
 var backgrounds = [];
 
-function preloadAudio(url, i) {
-    audios[i] = new Audio();
-    audios[i].addEventListener('canplaythrough', loadedAudio, false);
-    audios[i].src = url;
+var uiFiles = [
+    "img/UI/backbutton.png",
+    "img/UI/creditsbutton.png",
+    "img/UI/easybutton.png",
+    "img/UI/fondoOscurecido.png",
+    "img/UI/gameOver.png",
+    "img/UI/normalbutton.png",
+    "img/UI/placeholder.png",
+    "img/UI/playbutton.png",
+    "img/UI/pausebutton.png",
+    "img/UI/resumeGame.png",
+    "img/UI/ranking.png",
+    "img/UI/loading.png",
+    "img/UI/loadbutton.png"
+];
+
+var backButtonUI;
+var creditsButtonUI;
+var easyButtonUI;
+var fondoOscurecidoUI;
+var gameOverUI;
+var normalButtonUI;
+var placeholderUI;
+var playButtonUI;
+var pausebuttonUI;
+var resumeGameUI;
+var rankingUI;
+var loadingUI;
+var loadbuttonUI;
+
+function preloadAudio(url) {
+    var audio = new Audio();
+    audio.addEventListener('canplaythrough', loadedAudio, false);
+    audio.src = url;
+    return audio;
 }
 
 var loaded = 0;
 function loadedAudio() {
     loaded++;
-    if (loaded == backgroundFiles.length + audioFiles.length){
-        currentState.state.playButton.draw();
+    if (loaded == backgroundFiles.length + audioFiles.length + uiFiles.length + musicFiles.length){
+        currentState.state.loadButton.draw();
     }
 }
 
-function preloadImage(url, i){
-    backgrounds[i] = new Image();
-    backgrounds[i].addEventListener('load', loadedImage, false);
-    backgrounds[i].src = url;
+function preloadImage(url){
+    var image = new Image();
+    image.addEventListener('load', loadedImage, false);
+    image.src = url;
+    return image;
 }
 
 function loadedImage() {
     loaded++;
-    if (loaded == backgroundFiles.length + audioFiles.length){
-        currentState.state.playButton.draw();
+    if (loaded == backgroundFiles.length + audioFiles.length + uiFiles.length + musicFiles.length){
+        currentState.state.loadButton.draw();
     }
 }
