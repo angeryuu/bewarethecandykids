@@ -129,12 +129,6 @@ function kid(spawner, canvas, _type, _x, _y) {
             break;
     }
 
-    //para borrar luego
-
-
-
-    //
-
     appearSound.play();
     this.update = function (progress) {
         this.x += this.dir.x * progress * this.speed;
@@ -156,8 +150,7 @@ function kid(spawner, canvas, _type, _x, _y) {
 
         // Si llega al centro se acaba la partida
         if (Math.abs(this.x - canvas.width / 2) < 30 && Math.abs(this.y - canvas.height / 2) < 30) {
-            this.destroy();
-            //currentState.state.stopLoop();
+            currentState.state.finishGame();
         }
 
         // Si sale de la pantalla se destruye
@@ -197,18 +190,8 @@ function kid(spawner, canvas, _type, _x, _y) {
     }
 
     this.hit = function () {
-
-        /*if(audio.paused) {
-        //   audio.play();
-        } else {
-            audio.currentTime = 0;
-        }
-      //  audio.play();*/
-
         switch (this.type) {
             case 0: // Vampiro
-                //this.dir.x *= -1;
-                //this.dir.y *= -1;
                 goSound.play();
                 this.x < canvas.width / 2 ? this.dir.x = -1 : this.dir.x = 1;
                 this.dir.y = 0;
@@ -259,7 +242,6 @@ function kid(spawner, canvas, _type, _x, _y) {
                 break;
 
             case 3: //Bruja
-
                 if (!this.vulnerable) {
                     chewSound.play();
                     var keepLooping = true;
@@ -304,8 +286,25 @@ function kid(spawner, canvas, _type, _x, _y) {
                 break;
 
             case 4: // Demonio
-
-                break;
+                if (!this.vulnerable) {
+                    chewSound.play();
+                    this.vulnerable = true;
+                    this.target = null;
+                    spawner.createSubdemon(this.x+this.dir.y * -50, this.y+this.dir.x*50);
+                    this.x += this.dir.y * 50;
+                    this.y += this.dir.x * -50;
+                } else {
+                    goSound.play();
+                    this.x < canvas.width / 2 ? this.dir.x = -1 : this.dir.x = 1;
+                    this.dir.y = 0;
+                    this.speed = this.runSpeed;
+                    if (this.inverso) {
+                        this.sprite.src = "Sprites/demon.png";
+                    } else {
+                        this.sprite.src = "Sprites/demon-inverso.png";
+                    }
+                }
+            break;
         }
     }
 }
