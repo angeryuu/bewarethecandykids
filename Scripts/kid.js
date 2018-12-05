@@ -17,8 +17,8 @@ function kid(spawner, canvas, _type, _x, _y) {
     var margin = 10;
 
     this.dir = [0, 0];
-    this.dir.x = (canvas.width / 2)  - this.x;
-    this.dir.y = (canvas.height / 2) - this.y;
+    this.dir.x = ((canvas.width / 2) - 50) - this.x;
+    this.dir.y = ((canvas.height / 2) - 43) - this.y;
     this.mod = Math.sqrt((this.dir.x * this.dir.x + this.dir.y * this.dir.y));
     this.dir.x = this.dir.x / this.mod;
     this.dir.y = this.dir.y / this.mod;
@@ -147,9 +147,9 @@ function kid(spawner, canvas, _type, _x, _y) {
                 this.frameIndex = 0;
             }
         }
-
+        
         // Si llega al centro se acaba la partida
-        if (Math.abs(this.x - canvas.width / 2) < 30 && Math.abs(this.y - canvas.height / 2) < 30) {
+        if (Math.abs(this.x - (canvas.width / 2 - 50)) < 60 && Math.abs(this.y - (canvas.height / 2 - 43)) < 60) {
             currentState.state.finishGame();
         }
 
@@ -205,7 +205,6 @@ function kid(spawner, canvas, _type, _x, _y) {
 
             case 1: // Monstruo de Frankenstein
                 this.health--;
-                this.target = null;
                 if (this.health <= 0) {
                     goSound.play();
                     this.x < canvas.width / 2 ? this.dir.x = -1 : this.dir.x = 1;
@@ -218,6 +217,7 @@ function kid(spawner, canvas, _type, _x, _y) {
                     }
                 } else {
                     chewSound.play();
+                    this.target = null;
                 }
                 break;
 
@@ -247,7 +247,7 @@ function kid(spawner, canvas, _type, _x, _y) {
                     var keepLooping = true;
                     while (keepLooping) {
                         var kidx = Math.random() * canvas.width;
-                        var kidy = Math.random() * canvas.height;
+                        var kidy = Math.random()*(canvas.height-canvas.height/8) + canvas.height/8;
                         var module = Math.sqrt((((canvas.width / 2) - kidx) * ((canvas.width / 2) - kidx) + ((canvas.height / 2) - kidy) * ((canvas.height / 2) - kidy)));
                         if (module > canvas.height / 2) {
                             keepLooping = false;
@@ -255,8 +255,8 @@ function kid(spawner, canvas, _type, _x, _y) {
                             this.target = null;
                             this.x = kidx;
                             this.y = kidy;
-                            this.dir.x = (canvas.width / 2) - this.x;
-                            this.dir.y = (canvas.height / 2) - this.y;
+                            this.dir.x = ((canvas.width / 2) - 50) - this.x;
+                            this.dir.y = ((canvas.height / 2) - 43) - this.y;
                             this.mod = Math.sqrt((this.dir.x * this.dir.x + this.dir.y * this.dir.y));
                             this.dir.x = this.dir.x / this.mod;
                             this.dir.y = this.dir.y / this.mod;

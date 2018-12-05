@@ -12,33 +12,38 @@ function spawner(canvas){
     var wave = 1;
     var score = 0;
     var nKids = 10;
+    var discardUpdates = 3;
 
     this.update = function (progress) {
-        if(counterChangeWave>0) {
-            counterChangeWave -= progress;
-            if(counterChangeWave<0) counterChangeWave = 0;
+        if(discardUpdates!=0) {
+            discardUpdates--;
         } else {
-            maxKids = wave * 3 + 10;
-            spawnSpeed = 2000 - wave*50;
-            if(spawnSpeed<100) spawnSpeed = 100;
-    
-            counter += progress;
-            if(counter >= spawnSpeed) {
-                counter = 0;
-                if(kids.length<maxKids) this.createKid();
+            if(counterChangeWave>0) {
+                counterChangeWave -= progress;
+                if(counterChangeWave<0) counterChangeWave = 0;
+            } else {
+                maxKids = wave * 3 + 10;
+                spawnSpeed = 2000 - wave*50;
+                if(spawnSpeed<100) spawnSpeed = 100;
+        
+                counter += progress;
+                if(counter >= spawnSpeed) {
+                    counter = 0;
+                    if(kids.length<maxKids) this.createKid();
+                }
             }
+            if(score+kids.length == nKids && kids.length>0) {
+                counterChangeWave = 3000 - spawnSpeed;
+            }
+    
+            kids.forEach( function(valor, i, array){
+                kids[i].update(progress);
+            });
+    
+            subdemons.forEach( function(valor, i, array){
+                subdemons[i].update(progress);
+            });
         }
-        if(score+kids.length == nKids && kids.length>0) {
-            counterChangeWave = 3000 - spawnSpeed;
-        }
-
-        kids.forEach( function(valor, i, array){
-            kids[i].update(progress);
-        });
-
-        subdemons.forEach( function(valor, i, array){
-            subdemons[i].update(progress);
-        });
     }
 
     this.draw = function () {
@@ -114,20 +119,29 @@ function spawner(canvas){
 
             case 3:
             if(rand<0.2) type = 1;
-            else if(rand<0.4) type = 2;
+            else if(rand<0.35) type = 2;
             if(score+kids.length==29) type = 3;
             return type;
 
             case 4:
             if(rand<0.2) type = 1;
             else if(rand<0.4) type = 2;
+            else if(rand<0.55) type = 3;
+            if(score+kids.length==39) type = 4;
+            return type;
+
+            case 4:
+            if(rand<0.2) type = 1;
+            else if(rand<0.4) type = 2;
             else if(rand<0.6) type = 3;
+            else if(rand<0.75) type = 4;
             return type;
 
             default:
-            if(rand<0.25) type = 1;
-            else if(rand<0.5) type = 2;
-            else if(rand<0.75) type = 3;
+            if(rand<0.2) type = 1;
+            else if(rand<0.4) type = 2;
+            else if(rand<0.6) type = 3;
+            else if(rand<0.8) type = 4;
             return type;
         }
     }
