@@ -46,7 +46,7 @@ function gameState(container){
         requestId = window.requestAnimationFrame(loop);
         stop = false;
         candySound=new Audio("Audio/fx_caramelo.mp3");
-        candySound.volume=0.08;
+        candySound.volume=0.088;
         var music = new Audio("Audio/ckgameTheme.mp3");
         music.addEventListener('ended', function() {
             this.currentTime = 0;
