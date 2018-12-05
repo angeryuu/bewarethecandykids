@@ -6,17 +6,39 @@ function gameState(container){
     container.state = this;
     this.next = function(_state){
             canvas.removeEventListener('click', onClick, false);
+            music.pause();
             if(_state == "endState"){
                 return new endState(self);
+            }else if(_state == "titleState"){
+                return new titleState(self);
             }
+    }
+
+    this.finishGame = function(){
+        window.cancelAnimationFrame(requestId);
+
+        setTimeout(function(){
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.drawImage(backgrounds[3],0,0);
+            ctx.drawImage(backgrounds[2],0,0);
+
+            ctx.drawImage(gameOverUI, canvas.width/2-gameOverUI.width/2, canvas.height/2-gameOverUI.height/2);
+
+            ctx.drawImage(backgrounds[1],0,0);
+            ctx.drawImage(backgrounds[0],0,0);
+        }, 2000);
+
+        setTimeout(function(){
+            currentState.state = currentState.changeState("endState");
+        }, 3000);
     }
 
     var stop;
     this.stopLoop = function(){
-        /*if (requestId) {
-            window.cancelAnimationFrame(requestId);
-        }*/
-        stop = true;
+        if(!stop) stop = true;
+        else stop = false;
     }
 
     var canvas,
@@ -31,7 +53,13 @@ function gameState(container){
     var pj;
     var caramelos = [];
 
+    var music;
     var candySound;
+
+    var pauseButton;
+    var resumeButton;
+    var backButton;
+
     function create(){
         canvas = document.getElementById('gameCanvas');
         canvasLeft = canvas.offsetLeft;
@@ -42,12 +70,10 @@ function gameState(container){
         kidSpawner = new spawner(canvas);
 
         canvas.addEventListener('click', onClick, false);
-
-        requestId = window.requestAnimationFrame(loop);
         stop = false;
         candySound=new Audio("Audio/fx_caramelo.mp3");
         candySound.volume=0.088;
-        var music = ost[1];
+        music = ost[1];
         music.addEventListener('ended', function() {
             this.currentTime = 0;
             this.play();
@@ -55,7 +81,11 @@ function gameState(container){
         music.volume = 0.04*4.3 ;
         music.play();
      
+        pauseButton = new Button(pauseButtonUI, canvas.width-playButtonUI.width/2, playButtonUI.height/4, canvas);
+        resumeButton = new Button(resumeGameUI, canvas.width/1.8-resumeGameUI.width/2, canvas.height/2-resumeGameUI.height/2, canvas);
+        backButton = new Button(backButtonUI, canvas.width/2.3-backButtonUI.width/2, canvas.height/2-backButtonUI.height/2, canvas)
      
+        requestId = window.requestAnimationFrame(loop);
     }
 
     function update(progress) {
@@ -84,6 +114,8 @@ function gameState(container){
 
         ctx.drawImage(backgrounds[1],0,0);
         ctx.drawImage(backgrounds[0],0,0);
+
+        pauseButton.draw();
     }
         
     function loop(timestamp) {
@@ -98,7 +130,10 @@ function gameState(container){
             lastRender = timestamp;
         }else{
             window.cancelAnimationFrame(requestId);
-            currentState.state = currentState.changeState();
+            //currentState.state = currentState.changeState();
+            ctx.drawImage(placeholderUI, canvas.width/2-placeholderUI.width/2, canvas.height/2-placeholderUI.height/2)
+            resumeButton.draw();
+            backButton.draw();
         }
     }
 
@@ -118,6 +153,15 @@ function gameState(container){
             candySound.play();
             caramelos.push(new Caramelo(canvas, newKid, dir, pj.x + pj.sprite.width/2, pj.y + pj.sprite.height/2));
             pj.throw(x);
+        }
+
+        if((x > pauseButton.x && x < pauseButton.x + pauseButton.width) && (y > pauseButton.y && y < pauseButton.y + pauseButton.height) && !stop){
+            currentState.state.stopLoop();
+        }else if((x > resumeButton.x && x < resumeButton.x + resumeButton.width) && (y > resumeButton.y && y < resumeButton.y + resumeButton.height) && stop){
+            currentState.state.stopLoop();
+            requestId = window.requestAnimationFrame(loop);
+        }else if((x > backButton.x && x < backButton.x + backButton.width) && (y > backButton.y && y < backButton.y + backButton.height) && stop){
+            currentState.changeState("titleState");
         }
         
     }

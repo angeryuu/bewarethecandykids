@@ -1,5 +1,4 @@
 function titleState(container){
-    var music;
     var self = this;
     this.container = container;
     this.value = 'gameState';
@@ -35,13 +34,13 @@ function titleState(container){
     
         canvas.addEventListener("click", onClick, false);
 
-        music = ost[0];
-        music.addEventListener('ended', function() {
+        menuMusic = ost[0];
+        menuMusic.addEventListener('ended', function() {
             this.currentTime = 0;
             this.play();
         },false);
-        music.volume = 0.02*4.3 ;
-        music.play();
+        menuMusic.volume = 0.02*4.3 ;
+        menuMusic.play();
 
         draw();
     }
@@ -55,18 +54,17 @@ function titleState(container){
     }
 
     function onClick(event){
-        music.pause();
         var x = event.pageX - canvasLeft,
         y = event.pageY - canvasTop;
         if((x > playButton.x && x < playButton.x + playButton.width) && (y > playButton.y && y < playButton.y + playButton.height)){
             currentState.state = currentState.changeState("difficultyState");
         }else if((x > creditsButton.x && x < creditsButton.x + creditsButton.width) && (y > creditsButton.y && y < creditsButton.y + creditsButton.height)){
-            currentState.state = currentState.changeState("creditState");
+            //currentState.state = currentState.changeState("creditState");
         }
     }
 
     create();
 }
 
-
+var menuMusic;
 

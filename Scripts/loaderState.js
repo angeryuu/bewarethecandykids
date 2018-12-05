@@ -73,11 +73,11 @@ function loaderState(container){
         backButtonUI = preloadImage(uiFiles[0]);
         creditsButtonUI = preloadImage(uiFiles[1]);
         easyButtonUI = preloadImage(uiFiles[2]);
-        gameOverButtonUI = preloadImage(uiFiles[4]);
+        gameOverUI = preloadImage(uiFiles[4]);
         normalButtonUI = preloadImage(uiFiles[5]);
         placeholderUI = preloadImage(uiFiles[6]);
         playButtonUI = preloadImage(uiFiles[7]);
-        pausebuttonUI = preloadImage(uiFiles[8])
+        pauseButtonUI = preloadImage(uiFiles[8])
         resumeGameUI = preloadImage(uiFiles[9]);
         rankingUI = preloadImage(uiFiles[10]);
 

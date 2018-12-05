@@ -54,7 +54,7 @@ var gameOverUI;
 var normalButtonUI;
 var placeholderUI;
 var playButtonUI;
-var pausebuttonUI;
+var pauseButtonUI;
 var resumeGameUI;
 var rankingUI;
 var loadingUI;
