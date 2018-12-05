@@ -20,8 +20,14 @@ function loaderState(container){
     canvasTop = canvas.offsetTop;
     var ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    loadButtonUI = preloadImage(uiFiles[12]);
-    this.loadButton = new Button(loadButtonUI, canvas.width/2-loadButtonUI.width/2, canvas.height/1.8-loadButtonUI.height/2, canvas);
+
+    this.loadButton;
+    loadButtonUI = new Image();
+    loadButtonUI.addEventListener('load', function(){
+        loaded++;
+        currentState.state.loadButton = new Button(loadButtonUI, canvas.width/2-loadButtonUI.width/2, canvas.height/1.8-loadButtonUI.height/2, canvas);
+    },false);
+    loadButtonUI.src = uiFiles[12];
 
     var bgloading = 0;
 
