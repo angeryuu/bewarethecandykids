@@ -1,5 +1,5 @@
 function kid(spawner, canvas, _type, _x, _y) {
-    var multVol=3.7;
+    var multVol=4.3;
     this.ctx = canvas.getContext('2d');
     this.sprite = new Image();
     this.spriteWidth = 0;
