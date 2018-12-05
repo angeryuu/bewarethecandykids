@@ -144,14 +144,14 @@ function gameState(container){
         var newKid = kidSpawner.click(x,y);
         if (newKid != null && newKid.target == null) {
             var dir = [0,0];
-            dir.x = newKid.x+25 - (pj.x + pj.sprite.width/2);
-            dir.y = newKid.y+40 - (pj.y + pj.sprite.height/2);
+            dir.x = newKid.x+25 - (pj.x + pj.spriteWidth/2);
+            dir.y = newKid.y+40 - (pj.y + pj.spriteHeight/2);
             var mod = Math.sqrt((dir.x*dir.x)+(dir.y*dir.y));
             dir.x = dir.x/mod;
             dir.y = dir.y/mod;
             newKid.target = true;
             candySound.play();
-            caramelos.push(new Caramelo(canvas, newKid, dir, pj.x + pj.sprite.width/2, pj.y + pj.sprite.height/2));
+            caramelos.push(new Caramelo(canvas, newKid, dir, pj.x + pj.spriteWidth/2, pj.y + pj.spriteHeight/2));
             pj.throw(x);
         }
 
