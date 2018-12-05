@@ -8,10 +8,13 @@ function spawner(canvas){
     var maxKids = 10;
     var counter = 0;
     var counterChangeWave = 0;
-    var spawnSpeed = 2000;
+    var initialSpawnSpeed = 2000;
+    if(difficulty) initialSpawnSpeed = 1000;
+    var spawnSpeed;
     var wave = 1;
     var score = 0;
-    var nKids = 10;
+    maxKids = wave * 2 + 10;
+    var nKids = maxKids;
     var discardUpdates = 3;
 
     this.update = function (progress) {
@@ -22,8 +25,7 @@ function spawner(canvas){
                 counterChangeWave -= progress;
                 if(counterChangeWave<0) counterChangeWave = 0;
             } else {
-                maxKids = wave * 3 + 10;
-                spawnSpeed = 2000 - wave*50;
+                spawnSpeed = initialSpawnSpeed - wave*50;
                 if(spawnSpeed<100) spawnSpeed = 100;
         
                 counter += progress;
@@ -59,9 +61,10 @@ function spawner(canvas){
     this.destroy = function (_kid) {
         score++;
 
-        if(score>=wave*10) {
+        if(score>=nKids) {
             wave ++;
-            nKids += 10;
+            maxKids = wave * 2 + 10;
+            nKids += maxKids;
         }
 
         var kidToDelete = kids.indexOf(_kid);
@@ -109,25 +112,25 @@ function spawner(canvas){
         var type = 0;
         switch(wave) {
             case 1:
-            if(score+kids.length==9) type = 1;
+            if(score+kids.length==nKids-1) type = 1;
             return type;
 
             case 2:
             if(rand<0.2) type = 1;
-            if(score+kids.length==19) type = 2;
+            if(score+kids.length==nKids-1) type = 2;
             return type;
 
             case 3:
             if(rand<0.2) type = 1;
             else if(rand<0.35) type = 2;
-            if(score+kids.length==29) type = 3;
+            if(score+kids.length==nKids-1) type = 3;
             return type;
 
             case 4:
             if(rand<0.2) type = 1;
             else if(rand<0.4) type = 2;
             else if(rand<0.55) type = 3;
-            if(score+kids.length==39) type = 4;
+            if(score+kids.length==nKids-1) type = 4;
             return type;
 
             case 4:
