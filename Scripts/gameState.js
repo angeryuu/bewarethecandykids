@@ -161,7 +161,7 @@ function gameState(container){
             currentState.state.stopLoop();
             requestId = window.requestAnimationFrame(loop);
         }else if((x > backButton.x && x < backButton.x + backButton.width) && (y > backButton.y && y < backButton.y + backButton.height) && stop){
-            currentState.changeState("titleState");
+            currentState.state = currentState.changeState("titleState");
         }
         
     }
