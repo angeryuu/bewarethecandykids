@@ -52,7 +52,7 @@ function gameState(container){
             this.currentTime = 0;
             this.play();
         },false);
-        music.volume = 0.04*2.5 ;
+        music.volume = 0.04*3.7 ;
         music.play();
      
      
