@@ -1,13 +1,30 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
     <meta charset="utf-8" />
-
-    <!-- Título de la página -->
-    <title>Beware the Candy Kids</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Beware the Candy Kids</title>
+	<meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+    
+    <!-- Cargamos los archivos CSS -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        
+        canvas {
+            width: 100%;
+            height: auto;
+            max-height: max-content;
+        }
+    </style>
 
     <!-- Cargamos los archivos JS -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script src="Scripts/index.js"></script>
     <script src="Scripts/loaderState.js"></script>
     <script src="Scripts/titleState.js"></script>
@@ -19,13 +36,22 @@
     <script src="Scripts/spawner.js"></script>
     <script src="Scripts/kid.js"></script>
     <script src="Scripts/button.js"></script>
-    <script src="Scripts/library.js" ></script>
+    <script src="Scripts/library.js"></script>
 
 </head>
-<body>
 
+<body>
+    
     <!-- Canvas del juego -->
-    <canvas id="gameCanvas" width="1280" height="720" style="border:1px solid #000000;">Tu navegador no soporta el canvas de html5</canvas>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <canvas id="gameCanvas" width="1280" height="720" style="border:1px solid #000000;">Tu navegador no
+                    soporta el canvas de html5</canvas>
+            </div> <!-- /col-md-12 -->
+        </div> <!-- /row -->
+    </div>
 
 </body>
+
 </html>
