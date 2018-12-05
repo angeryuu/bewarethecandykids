@@ -79,6 +79,7 @@ function gameState(container){
             this.play();
         },false);
         music.volume = 0.04*4.3 ;
+        music.currentTime = 0;
         music.play();
      
         pauseButton = new Button(pauseButtonUI, canvas.width-playButtonUI.width/2, playButtonUI.height/4, canvas);
