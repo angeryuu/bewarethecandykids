@@ -59,7 +59,7 @@ function titleState(container){
         if((x > playButton.x && x < playButton.x + playButton.width) && (y > playButton.y && y < playButton.y + playButton.height)){
             currentState.state = currentState.changeState("difficultyState");
         }else if((x > creditsButton.x && x < creditsButton.x + creditsButton.width) && (y > creditsButton.y && y < creditsButton.y + creditsButton.height)){
-            window.location.href = "teamameba.github.io/bewarethecandykids#equipo";
+            window.location.href = "#equipo";
         }
     }
 
