@@ -1,7 +1,7 @@
 function difficultyState(container){
     var self = this;
     this.container = container;
-    this.value = 'gameState';
+    this.value = 'difficultyState';
     container.state = this;
     this.next = function(_state){
         canvas.removeEventListener('click', onClick, false);

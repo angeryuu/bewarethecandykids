@@ -1,7 +1,7 @@
 function endState(container){
     var self = this;
     this.container = container;
-    this.value = 'gameState';
+    this.value = 'endState';
     container.state = this;
     this.next = function(_state){
         canvas.removeEventListener('click', onClick, false);
