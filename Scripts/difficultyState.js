@@ -51,9 +51,11 @@ function difficultyState(container){
         y = event.pageY - canvasTop;
         if((x > easyButton.x && x < easyButton.x + easyButton.width) && (y > easyButton.y && y < easyButton.y + easyButton.height)){
             menuMusic.pause();
+            difficulty = false;
             currentState.state = currentState.changeState("gameState");
         }else if((x > normalButton.x && x < normalButton.x + normalButton.width) && (y > normalButton.y && y < normalButton.y + normalButton.height)){
             menuMusic.pause();
+            difficulty = true;
             currentState.state = currentState.changeState("gameState");
         }else if((x > backButton.x && x < backButton.x + backButton.width) && (y > backButton.y && y < backButton.y + backButton.height)){
             currentState.state = currentState.changeState("titleState");
@@ -62,3 +64,4 @@ function difficultyState(container){
 
     create();
 }
+var difficulty;
