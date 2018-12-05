@@ -101,7 +101,7 @@ function spawner(canvas){
 
     this.checkType = function () {
         var rand = Math.random();
-        var type = 4;
+        var type = 0;
         switch(wave) {
             case 1:
             if(score+kids.length==9) type = 1;
