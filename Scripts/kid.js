@@ -113,8 +113,8 @@ function kid(spawner, canvas, _type, _x, _y) {
             appearSound = audios[11];
             chewSound = audios[12];
             goSound = audios[13];
-            appearSound.volume =  0.02*multVol;
-            chewSound.volume =  0.02*multVol;
+            appearSound.volume =  0.1*multVol;
+            chewSound.volume =  0.1*multVol;
             goSound.volume= 0.02*multVol;
 
             this.spriteHeight = 82;
