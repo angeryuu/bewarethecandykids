@@ -15,12 +15,8 @@ function spawner(canvas){
     var score = 0;
     maxKids = wave * 2 + 10;
     var nKids = maxKids;
-    var discardUpdates = 3;
 
     this.update = function (progress) {
-        if(discardUpdates!=0) {
-            discardUpdates--;
-        } else {
             if(counterChangeWave>0) {
                 counterChangeWave -= progress;
                 if(counterChangeWave<0) counterChangeWave = 0;
@@ -45,7 +41,6 @@ function spawner(canvas){
             subdemons.forEach( function(valor, i, array){
                 subdemons[i].update(progress);
             });
-        }
     }
 
     this.draw = function () {

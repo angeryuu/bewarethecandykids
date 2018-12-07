@@ -28,7 +28,7 @@ function gameState(container){
 
             ctx.drawImage(backgrounds[1],0,0);
             ctx.drawImage(backgrounds[0],0,0);
-        }, 2000);
+        }, 0);
 
         setTimeout(function(){
             currentState.state = currentState.changeState("endState");
@@ -40,6 +40,11 @@ function gameState(container){
         if(!stop) stop = true;
         else stop = false;
     }
+
+    var mouse = {
+        x: 0,
+        y: 0
+    };
 
     var canvas,
         canvasLeft,
@@ -70,6 +75,11 @@ function gameState(container){
         kidSpawner = new spawner(canvas);
 
         canvas.addEventListener('click', onClick, false);
+        canvas.addEventListener("mousemove", function(e) {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
         stop = false;
         candySound=new Audio("Audio/fx_caramelo.mp3");
         candySound.volume=0.088;
@@ -90,6 +100,9 @@ function gameState(container){
     }
 
     function update(progress) {
+        if(progress > 20) progress = 16;
+
+        pauseButton.update(mouse);
 
         caramelos.forEach( function(valor, i, array){
             caramelos[i].update(progress);
@@ -131,7 +144,6 @@ function gameState(container){
             lastRender = timestamp;
         }else{
             window.cancelAnimationFrame(requestId);
-            //currentState.state = currentState.changeState();
             ctx.drawImage(placeholderUI, canvas.width/2-placeholderUI.width/2, canvas.height/2-placeholderUI.height/2)
             resumeButton.draw();
             backButton.draw();
@@ -169,6 +181,3 @@ function gameState(container){
 
     create();
 }
-
-
-

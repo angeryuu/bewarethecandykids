@@ -9,11 +9,28 @@ function loaderState(container){
             return new titleState(self);
         }
     }
+
+    var requestId;
+    var lastRender = 0;
+
+    var stop = true;
+    this.stopLoop = function(){
+        if(!stop) stop = true;
+        else{
+            requestId = window.requestAnimationFrame(loop);
+            stop = false;
+        }
+    }
     
     var canvas,
         canvasLeft,
         canvasTop,
         ctx;
+
+    var mouse = {
+        x: 0,
+        y: 0
+    };
 
     canvas = document.getElementById('gameCanvas');
     canvasLeft = canvas.offsetLeft;
@@ -82,6 +99,39 @@ function loaderState(container){
         rankingUI = preloadImage(uiFiles[10]);
 
         canvas.addEventListener("click", onClick, false);
+        canvas.addEventListener("mousemove", function(e) {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+        
+    }
+
+    function update(progress){
+        currentState.state.loadButton.update(mouse);
+    }
+
+    function draw(){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.drawImage(fondoOscurecidoUI, 0,0);
+        ctx.drawImage(loadingUI, canvas.width/2-loadingUI.width/2, canvas.height/2-loadingUI.height/2);
+
+        currentState.state.loadButton.draw();
+    }
+
+    function loop(timestamp) {
+        if(!stop){
+            requestId = window.requestAnimationFrame(loop);
+        
+            var progress = timestamp - lastRender;
+        
+            update(progress);
+            draw();
+        
+            lastRender = timestamp;
+        }else{
+            window.cancelAnimationFrame(requestId);
+        }
     }
 
     function onClick(event){
@@ -90,6 +140,7 @@ function loaderState(container){
         if(loaded == backgroundFiles.length + audioFiles.length + uiFiles.length + musicFiles.length){
             if(x > currentState.state.loadButton.x && x < currentState.state.loadButton.x + currentState.state.loadButton.width){
                 if(y > currentState.state.loadButton.y && y < currentState.state.loadButton.y + currentState.state.loadButton.height){
+                    currentState.state.stopLoop();
                     currentState.state = currentState.changeState("titleState");
                 }
             }

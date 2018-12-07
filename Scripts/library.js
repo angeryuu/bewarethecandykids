@@ -71,7 +71,7 @@ var loaded = 0;
 function loadedAudio() {
     loaded++;
     if (loaded == backgroundFiles.length + audioFiles.length + uiFiles.length + musicFiles.length){
-        currentState.state.loadButton.draw();
+        currentState.state.stopLoop();
     }
 }
 
@@ -85,6 +85,6 @@ function preloadImage(url){
 function loadedImage() {
     loaded++;
     if (loaded == backgroundFiles.length + audioFiles.length + uiFiles.length + musicFiles.length){
-        currentState.state.loadButton.draw();
+        currentState.state.stopLoop();
     }
 }

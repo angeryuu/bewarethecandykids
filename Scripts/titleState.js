@@ -17,8 +17,22 @@ function titleState(container){
         canvasTop,
         ctx;
 
+    var requestId;
+    var lastRender = 0;
+
     var playButton;
     var creditsButton;
+
+    var mouse = {
+        x: 0,
+        y: 0
+    };
+
+    var stop = false;
+    this.stopLoop = function(){
+        if(!stop) stop = true;
+        else stop = false;
+    }
 
     function create(){
         canvas = document.getElementById('gameCanvas');
@@ -33,6 +47,10 @@ function titleState(container){
         creditsButton = new Button(creditsButtonUI, canvas.width/2-playButtonUI.width/2, canvas.height/1.7-playButtonUI.height/2, canvas);
     
         canvas.addEventListener("click", onClick, false);
+        canvas.addEventListener("mousemove", function(e) {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
 
         menuMusic = ost[0];
         menuMusic.addEventListener('ended', function() {
@@ -42,10 +60,17 @@ function titleState(container){
         menuMusic.volume = 0.02*4.3 ;
         menuMusic.play();
 
-        draw();
+        requestId = window.requestAnimationFrame(loop);
+    }
+
+    function update(progress){
+        playButton.update(mouse);
+        creditsButton.update(mouse);
     }
 
     function draw(){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
         ctx.drawImage(fondoOscurecidoUI, 0, 0);
         ctx.drawImage(placeholderUI, canvas.width/2-placeholderUI.width/2, canvas.height/2-placeholderUI.height/2);
 
@@ -53,10 +78,26 @@ function titleState(container){
         creditsButton.draw();
     }
 
+    function loop(timestamp) {
+        if(!stop){
+            requestId = window.requestAnimationFrame(loop);
+        
+            var progress = timestamp - lastRender;
+        
+            update(progress);
+            draw();
+        
+            lastRender = timestamp;
+        }else{
+            window.cancelAnimationFrame(requestId);
+        }
+    }
+
     function onClick(event){
         var x = event.pageX - canvasLeft,
         y = event.pageY - canvasTop;
         if((x > playButton.x && x < playButton.x + playButton.width) && (y > playButton.y && y < playButton.y + playButton.height)){
+            currentState.state.stopLoop();
             currentState.state = currentState.changeState("difficultyState");
         }else if((x > creditsButton.x && x < creditsButton.x + creditsButton.width) && (y > creditsButton.y && y < creditsButton.y + creditsButton.height)){
             window.location.href = "#equipo";
