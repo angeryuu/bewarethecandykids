@@ -101,7 +101,7 @@ function titleState(container){
             currentState.state.stopLoop();
             currentState.state = currentState.changeState("difficultyState");
         }else if((x > creditsButton.x && x < creditsButton.x + creditsButton.width) && (y > creditsButton.y && y < creditsButton.y + creditsButton.height)){
-            window.location.href = "#equipo";
+            window.open("https://teamameba.github.io/TeamAmeba/");
         }
     }
 
