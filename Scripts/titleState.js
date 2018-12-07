@@ -5,6 +5,7 @@ function titleState(container){
     container.state = this;
     this.next = function(_state){
         canvas.removeEventListener('click', onClick, false);
+        canvas.removeEventListener('mousemove', onClick, false);
         if(_state == "difficultyState"){
             return new difficultyState(self);
         }else if(_state == "creditState"){

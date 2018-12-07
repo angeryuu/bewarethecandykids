@@ -5,6 +5,7 @@ function difficultyState(container){
     container.state = this;
     this.next = function(_state){
         canvas.removeEventListener('click', onClick, false);
+        canvas.removeEventListener('mousemove', onClick, false);
         if(_state == "titleState") return new titleState(self);
         else if(_state == "gameState") return new gameState(self);
     }

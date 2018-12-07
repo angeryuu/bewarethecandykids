@@ -6,6 +6,7 @@ function gameState(container){
     container.state = this;
     this.next = function(_state){
             canvas.removeEventListener('click', onClick, false);
+            canvas.removeEventListener('mousemove', onClick, false);
             music.pause();
             if(_state == "endState"){
                 return new endState(self);
@@ -32,7 +33,7 @@ function gameState(container){
 
         setTimeout(function(){
             currentState.state = currentState.changeState("endState");
-        }, 3000);
+        }, 1000);
     }
 
     var stop;
@@ -64,6 +65,8 @@ function gameState(container){
     var pauseButton;
     var resumeButton;
     var backButton;
+
+    var pause = false;
 
     function create(){
         canvas = document.getElementById('gameCanvas');
@@ -102,14 +105,20 @@ function gameState(container){
     function update(progress) {
         if(progress > 20) progress = 16;
 
-        pauseButton.update(mouse);
+        if(!pause){
+            pauseButton.update(mouse);
 
-        caramelos.forEach( function(valor, i, array){
-            caramelos[i].update(progress);
-            if(caramelos[i].destroyed) caramelos.splice(i,1);
-        });
-        pj.update();
-        kidSpawner.update(progress);
+            caramelos.forEach( function(valor, i, array){
+                caramelos[i].update(progress);
+                if(caramelos[i].destroyed) caramelos.splice(i,1);
+            });
+            pj.update();
+            kidSpawner.update(progress);
+
+        }else{
+            resumeButton.update(mouse);
+            backButton.update(mouse);
+        }
     }
         
     function draw() {
@@ -130,6 +139,16 @@ function gameState(container){
         ctx.drawImage(backgrounds[0],0,0);
 
         pauseButton.draw();
+
+        if(pause){
+            ctx.globalAlpha = 0.6;
+            ctx.fillRect(0,0,canvas.width, canvas.height);
+            ctx.globalAlpha = 1.0;
+
+            ctx.drawImage(placeholderUI, canvas.width/2-placeholderUI.width/2, canvas.height/2-placeholderUI.height/2)
+            resumeButton.draw();
+            backButton.draw();
+        }
     }
         
     function loop(timestamp) {
@@ -144,9 +163,6 @@ function gameState(container){
             lastRender = timestamp;
         }else{
             window.cancelAnimationFrame(requestId);
-            ctx.drawImage(placeholderUI, canvas.width/2-placeholderUI.width/2, canvas.height/2-placeholderUI.height/2)
-            resumeButton.draw();
-            backButton.draw();
         }
     }
 
@@ -168,12 +184,11 @@ function gameState(container){
             pj.throw(x);
         }
 
-        if((x > pauseButton.x && x < pauseButton.x + pauseButton.width) && (y > pauseButton.y && y < pauseButton.y + pauseButton.height) && !stop){
-            currentState.state.stopLoop();
-        }else if((x > resumeButton.x && x < resumeButton.x + resumeButton.width) && (y > resumeButton.y && y < resumeButton.y + resumeButton.height) && stop){
-            currentState.state.stopLoop();
-            requestId = window.requestAnimationFrame(loop);
-        }else if((x > backButton.x && x < backButton.x + backButton.width) && (y > backButton.y && y < backButton.y + backButton.height) && stop){
+        if((x > pauseButton.x && x < pauseButton.x + pauseButton.width) && (y > pauseButton.y && y < pauseButton.y + pauseButton.height) && !pause){
+            pause = true;
+        }else if((x > resumeButton.x && x < resumeButton.x + resumeButton.width) && (y > resumeButton.y && y < resumeButton.y + resumeButton.height) && pause){
+            pause = false;
+        }else if((x > backButton.x && x < backButton.x + backButton.width) && (y > backButton.y && y < backButton.y + backButton.height) && pause){
             currentState.state = currentState.changeState("titleState");
         }
         

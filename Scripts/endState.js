@@ -5,6 +5,7 @@ function endState(container){
     container.state = this;
     this.next = function(_state){
         canvas.removeEventListener('click', onClick, false);
+        canvas.removeEventListener('mousemove', onClick, false);
         if(_state == "titleState"){
             return new titleState(self);
         }
@@ -17,6 +18,20 @@ function endState(container){
 
     var backButton;
 
+    var mouse = {
+        x: 0,
+        y: 0
+    };
+
+    var requestId;
+    var lastRender = 0;
+
+    var stop = false;
+    this.stopLoop = function(){
+        if(!stop) stop = true;
+        else stop = false;
+    }
+
     function create(){
         canvas = document.getElementById('gameCanvas');
         canvasLeft = canvas.offsetLeft;
@@ -26,8 +41,16 @@ function endState(container){
         backButton = new Button(backButtonUI, canvas.width/2.75-backButtonUI.width/2, canvas.height/1.55-backButtonUI.height/2, canvas)
 
         canvas.addEventListener("click", onClick, false);
+        canvas.addEventListener("mousemove", function(e) {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
 
-        draw();
+        requestId = window.requestAnimationFrame(loop);
+    }
+
+    function update(progress){
+        backButton.update(mouse);
     }
 
     function draw(){
@@ -39,10 +62,26 @@ function endState(container){
         backButton.draw();
     }
 
+    function loop(timestamp) {
+        if(!stop){
+            requestId = window.requestAnimationFrame(loop);
+        
+            var progress = timestamp - lastRender;
+        
+            update(progress);
+            draw();
+        
+            lastRender = timestamp;
+        }else{
+            window.cancelAnimationFrame(requestId);
+        }
+    }
+
     function onClick(event){
         var x = event.pageX - canvasLeft,
         y = event.pageY - canvasTop;
         if((x > backButton.x && x < backButton.x + backButton.width) && (y > backButton.y && y < backButton.y + backButton.height)){
+            currentState.state.stopLoop();
             currentState.state = currentState.changeState("titleState");
         }
     }
