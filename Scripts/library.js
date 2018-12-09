@@ -43,7 +43,9 @@ var uiFiles = [
     "img/UI/resumeGame.png",
     "img/UI/ranking.png",
     "img/UI/loading.png",
-    "img/UI/loadbutton.png"
+    "img/UI/loadbutton.png",
+    "img/UI/resumebutton.png",
+    "img/UI/exitbutton.png"
 ];
 
 var backButtonUI;
@@ -59,6 +61,8 @@ var resumeGameUI;
 var rankingUI;
 var loadingUI;
 var loadbuttonUI;
+var resumebuttonUI;
+var exitbuttonUI;
 
 function preloadAudio(url) {
     var audio = new Audio();

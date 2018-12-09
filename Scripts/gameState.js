@@ -96,8 +96,8 @@ function gameState(container){
         music.play();
      
         pauseButton = new Button(pauseButtonUI, canvas.width-playButtonUI.width/2, playButtonUI.height/4, canvas);
-        resumeButton = new Button(resumeGameUI, canvas.width/1.8-resumeGameUI.width/2, canvas.height/2-resumeGameUI.height/2, canvas);
-        backButton = new Button(backButtonUI, canvas.width/2.3-backButtonUI.width/2, canvas.height/2-backButtonUI.height/2, canvas)
+        resumeButton = new Button(resumebuttonUI, canvas.width/2-resumebuttonUI.width/2, canvas.height/2.3-resumebuttonUI.height/2, canvas);
+        backButton = new Button(exitbuttonUI, canvas.width/2-exitbuttonUI.width/2, canvas.height/1.7-exitbuttonUI.height/2, canvas)
      
         requestId = window.requestAnimationFrame(loop);
     }
@@ -141,7 +141,10 @@ function gameState(container){
         pauseButton.draw();
 
         if(pause){
+            ctx.drawImage(resumeGameUI,canvas.width-playButtonUI.width/2, playButtonUI.height/4);
+
             ctx.globalAlpha = 0.6;
+            ctx.fillStyle = "black";
             ctx.fillRect(0,0,canvas.width, canvas.height);
             ctx.globalAlpha = 1.0;
 

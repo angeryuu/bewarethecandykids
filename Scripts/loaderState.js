@@ -98,6 +98,8 @@ function loaderState(container){
         pauseButtonUI = preloadImage(uiFiles[8])
         resumeGameUI = preloadImage(uiFiles[9]);
         rankingUI = preloadImage(uiFiles[10]);
+        resumebuttonUI = preloadImage(uiFiles[13]);
+        exitbuttonUI = preloadImage(uiFiles[14]);
 
         canvas.addEventListener("click", onClick, false);
         canvas.addEventListener("mousemove", function(e) {

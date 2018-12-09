@@ -16,6 +16,13 @@ function spawner(canvas){
     maxKids = wave * 2 + 10;
     var nKids = maxKids;
 
+        //Fuente del Score y las Oleadas
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://fonts.googleapis.com/css?family=Gamja+Flower|Acme|Pacifico';
+        document.getElementsByTagName('head')[0].appendChild(link);
+
     this.update = function (progress) {
             if(counterChangeWave>0) {
                 counterChangeWave -= progress;
@@ -51,6 +58,13 @@ function spawner(canvas){
         subdemons.forEach( function(valor, i, array){
             subdemons[i].draw();
         });
+
+        this.ctx.fillStyle = 'rgb(77,50,42)';
+        this.ctx.font = 'bold 42pt "Pacifico"';
+        this.ctx.fillText("Wave: "+ wave, 5, 56);
+        this.ctx.fillStyle = 'rgb(255,255,255)';
+        this.ctx.font = 'bold 28pt "Pacifico"';
+        this.ctx.fillText("Score: "+ score, 5, 100);
     }
 
     this.destroy = function (_kid) {
