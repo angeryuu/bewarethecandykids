@@ -54,7 +54,7 @@ function endState(container){
     }
 
     function draw(){
-        ctx.drawImage(fondoOscurecidoUI, 0, 0);
+        drawImageProp(ctx, fondoOscurecidoUI, 0,0,canvas.width,canvas.height);
         ctx.drawImage(placeholderUI, canvas.width/2-placeholderUI.width/2, canvas.height/2-placeholderUI.height/2);
 
         ctx.drawImage(rankingUI, canvas.width/2-rankingUI.width/2, canvas.height/2-rankingUI.height/2);

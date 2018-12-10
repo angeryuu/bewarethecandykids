@@ -40,7 +40,7 @@ function titleState(container){
         canvasLeft = canvas.offsetLeft;
         canvasTop = canvas.offsetTop;
         ctx = canvas.getContext('2d');
-
+        
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         playButton = new Button(playButtonUI, canvas.width/2-playButtonUI.width/2, canvas.height/2.3-playButtonUI.height/2, canvas);
@@ -71,8 +71,7 @@ function titleState(container){
 
     function draw(){
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        ctx.drawImage(fondoOscurecidoUI, 0, 0);
+        drawImageProp(ctx, fondoOscurecidoUI, 0,0,canvas.width,canvas.height);
         ctx.drawImage(placeholderUI, canvas.width/2-placeholderUI.width/2, canvas.height/2-placeholderUI.height/2);
 
         playButton.draw();

@@ -22,13 +22,13 @@ function gameState(container){
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            ctx.drawImage(backgrounds[3],0,0);
-            ctx.drawImage(backgrounds[2],0,0);
+            drawImageProp(ctx, backgrounds[3], 0,0,canvas.width,canvas.height);
+            drawImageProp(ctx, backgrounds[2], 0,0,canvas.width,canvas.height);
 
             ctx.drawImage(gameOverUI, canvas.width/2-gameOverUI.width/2, canvas.height/2-gameOverUI.height/2);
 
-            ctx.drawImage(backgrounds[1],0,0);
-            ctx.drawImage(backgrounds[0],0,0);
+            drawImageProp(ctx, backgrounds[1], 0,0,canvas.width,canvas.height);
+            drawImageProp(ctx, backgrounds[0], 0,0,canvas.width,canvas.height);
         }, 0);
 
         setTimeout(function(){
@@ -124,8 +124,8 @@ function gameState(container){
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        ctx.drawImage(backgrounds[3],0,0);
-        ctx.drawImage(backgrounds[2],0,0);
+        drawImageProp(ctx, backgrounds[3], 0,0,canvas.width,canvas.height);
+        drawImageProp(ctx, backgrounds[2], 0,0,canvas.width,canvas.height);
 
         pj.draw();
 
@@ -135,8 +135,8 @@ function gameState(container){
 
         kidSpawner.draw();
 
-        ctx.drawImage(backgrounds[1],0,0);
-        ctx.drawImage(backgrounds[0],0,0);
+        drawImageProp(ctx, backgrounds[1], 0,0,canvas.width,canvas.height);
+        drawImageProp(ctx, backgrounds[0], 0,0,canvas.width,canvas.height);
 
         pauseButton.draw();
 

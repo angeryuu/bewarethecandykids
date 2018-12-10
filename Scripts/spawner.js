@@ -59,7 +59,7 @@ function spawner(canvas){
             subdemons[i].draw();
         });
 
-        this.ctx.fillStyle = 'rgb(77,50,42)';
+        this.ctx.fillStyle = 'rgb(255,255,255)';
         this.ctx.font = 'bold 42pt "Pacifico"';
         this.ctx.fillText("Wave: "+ wave, 5, 56);
         this.ctx.fillStyle = 'rgb(255,255,255)';
